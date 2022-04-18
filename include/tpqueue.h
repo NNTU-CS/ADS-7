@@ -4,6 +4,7 @@
 
 template<typename T>
 class TPQueue {
+ private:
   struct ITEM {
     T data;
     ITEM* next;
@@ -28,34 +29,34 @@ class TPQueue {
     return (T)0;
   }
   void push(T value) {
-   ITEM* tmp = nullptr;
-   ITEM* it = create(value);
-   ITEM* temp = head;
-   if (head && tail) {
-     while (temp && (temp->data).prior >= value.prior) {
-       tmp = temp;
-       temp = temp->next;
-     }
-     if (temp == head && ((head->data).prior == (it->data).prior)) {
-       it->next = head->next;
-       head->next = it;
-     } else if (temp == head && ((head->data).prior >= (it->data).prior)) {
-       it->next = head->next;
-       head->next = it;
-     } else if (temp == head && ((head->data).prior < (it->data).prior)) {
-       it->next = head;
-       head = it;
-     } else if (!temp) {
-       tail->next = it;
-       tail = it;
-     } else {
-       tmp->next = it;
-       it->next = temp;
-     }
-   } else {
-    head = create(value);
-    tail = head;
-   }
+    ITEM* tmp = nullptr;
+    ITEM* it = create(value);
+    ITEM* temp = head;
+    if (head && tail) {
+       while (temp && (temp->data).prior >= value.prior) {
+         tmp = temp;
+         temp = temp->next;
+       }
+       if (temp == head && ((head->data).prior == (it->data).prior)) {
+         it->next = head->next;
+         head->next = it;
+       } else if (temp == head && ((head->data).prior >= (it->data).prior)) {
+         it->next = head->next;
+         head->next = it;
+       } else if (temp == head && ((head->data).prior < (it->data).prior)) {
+         it->next = head;
+         head = it;
+       } else if (!temp) {
+         tail->next = it;
+         tail = it;
+       } else {
+         tmp->next = it;
+         it->next = temp;
+       }
+    } else {
+      head = create(value);
+      tail = head;
+    }
   }
 };
 
