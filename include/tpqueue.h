@@ -11,7 +11,7 @@ class TPQueue {
   };
   ITEM* head, tail;
   TPQueue::ITEM* create(const T& value) {
-    ITEM* it = new Item;
+    ITEM* it = new ITEM;
     it->data = value;
     it->next = nullptr;
     return it;
@@ -24,7 +24,7 @@ class TPQueue {
       head = head->next;
       return temp->data;
     } else {
-      return 0;
+      return (T)0;
     }
   }
   void push(T value) {
