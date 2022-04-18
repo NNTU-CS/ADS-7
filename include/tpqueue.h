@@ -9,7 +9,8 @@ class TPQueue {
     ITEM* next;
   };
  private:
-  ITEM* head, tail;
+  ITEM* head; 
+  ITEM* tail;
   TPQueue::ITEM* create(const T& value) {
     ITEM* it = new ITEM;
     it->data = value;
@@ -52,7 +53,7 @@ class TPQueue {
      }
    } else {
     head = create(value);
-    head = tail;
+    tail = head;
    }
   }
 };
