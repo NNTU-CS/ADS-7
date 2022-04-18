@@ -9,8 +9,6 @@ class TPQueue {
     T data;
     ITEM* next;
   };
- 
- private:
   ITEM* head;
   ITEM* tail;
   TPQueue::ITEM* create(const T& value) {
@@ -19,7 +17,6 @@ class TPQueue {
     it->next = nullptr;
     return it;
   }
- 
  public:
   TPQueue() :head(nullptr), tail(nullptr) {}
   T pop() {
