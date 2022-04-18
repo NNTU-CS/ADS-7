@@ -26,7 +26,10 @@ class TPQueue {
       head = head->next;
       return temp->data;
     }
-    return (T)0;
+    T tmp;
+    tmp.prior = 0;
+    tmp.ch = ' ';
+    return tmp;
   }
   void push(T value) {
     ITEM* tmp = nullptr;
