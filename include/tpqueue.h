@@ -25,6 +25,7 @@ class TPQueue {
       head = head->next;
       return temp->data;
     }
+    return (T)0;
   }
   void push(T value) {
    ITEM* tmp = nullptr;
@@ -40,7 +41,7 @@ class TPQueue {
        head->next = it;
      } else if (temp == head && ((head->data).prior >= (it->data).prior)) {
        it->next = head->next;
-       head->next = item;
+       head->next = it;
      } else if (temp == head && ((head->data).prior < (it->data).prior)) {
        it->next = head;
        head = it;
