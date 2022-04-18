@@ -5,51 +5,51 @@
 template<typename T>
 class TPQueue {
  private:
-  struct Item {
+  struct ITEM {
     T data;
-    Item* next;
+    ITEM* next;
   };
-  Item* head, tail;
+  ITEM* head, tail;
   TPQueue::Item create(const T& value) {
-    Item* item = new Item;
-    item->data = value;
-    item->next = nullptr;
-    return item;
+    ITEM* it = new Item;
+    it->data = value;
+    it->next = nullptr;
+    return it;
   }
  public:
   TPQueue() :head(nullptr), tail(nullptr) {}
   T pop() {
     if (head) {
-      Item* temp = head;
+      ITEM* temp = head;
       head = head->next;
       return temp->data;
     } else {
-      return (T)0;
+      return 0;
     }
   }
   void push(T value) {
-    Item* tmp = nullptr;
-    Item* item = create(value);
-    Item* temp = head;
+    ITEM* tmp = nullptr;
+    ITEM* it = create(value);
+    ITEM* temp = head;
     while (temp && (temp->data).prior >= value.prior) {
       tmp = temp;
       temp = temp->next;
     }
-    if (temp == head && ((head->data).prior == (item->data).prior)) {
-      item->next = head->next;
+    if (temp == head && ((head->data).prior == (it->data).prior)) {
+      it->next = head->next;
+      head->next = it;
+    } else if (temp == head && ((head->data).prior >= (it->data).prior)) {
+      it->next = head->next;
       head->next = item;
-    } else if (temp == head && ((head->data).prior >= (item->data).prior)) {
-      item->next = head->next;
-      head->next = item;
-    } else if (temp == head && ((head->data).prior < (item->data).prior)) {
-      item->next = head;
-      head = item;
+    } else if (temp == head && ((head->data).prior < (it->data).prior)) {
+      it->next = head;
+      head = it;
     } else if (!temp) {
-      tail->next = item;
-      tail = item;
+      tail->next = it;
+      tail = it;
     } else {
-      tmp->next = item;
-      item->next = temp;
+      tmp->next = it;
+      it->next = temp;
     }
   }
 };
