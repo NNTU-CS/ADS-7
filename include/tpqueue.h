@@ -8,29 +8,29 @@
 template <typename T>
 class TPQueue {
  private:
-   struct ITEM {
+    struct ITEM {
      T data;
      ITEM *next;
      ITEM *prev;
-   };
-   TPQueue::ITEM *create (const T &data) {
+    };
+    TPQueue::ITEM *create(const T &data) {
      ITEM * item = new ITEM;
      item->data = data;
      item->next = nullptr;
      item->prev = nullptr;
      return item;
-   }
-   ITEM *head;
-   ITEM *tail;
-   ITEM *current;
+    }
+    ITEM *head;
+    ITEM *tail;
+    ITEM *current;
 
  public:
-   ~TPQueue() {
+    ~TPQueue() {
      while (head)
        pop();
-   }
+    }
 
-   T pop() {
+    T pop() {
      if (head) {
        ITEM *temp = head->next;
        if (temp)
@@ -40,38 +40,38 @@ class TPQueue {
        head = temp;
        return data;
      } else {
-         throw std::string ( " Empty ! " );
+         throw std::string("Empty!");
        }
-   }
-   void push (const T& data) {
+    }
+    void push(const T& data) {
      ITEM *temp = head;
      ITEM *item = create(data);
      while (temp && temp->data.prior >= data.prior)
        temp = temp->next;
-     if (! temp && head ) {
+     if (!temp && head) {
        tail->next = item;
-       tail->next->prev = tail ;
+       tail->next->prev = tail;
        tail = item;
-     } else if (!temp && !head ) {
+     } else if (!temp && !head) {
          head = tail = item;
-       } else if (! temp->prev ) {
-           temp->prev = item ;
-           item->next = temp ;
-           head = item ;
+       } else if (!temp->prev) {
+           temp->prev = item;
+           item->next = temp;
+           head = item;
          } else {
-             temp->prev->next = item ;
-             item->prev = temp->prev ;
-             item->next = temp ;
-             temp->prev = item ;
+             temp->prev->next = item;
+             item->prev = temp->prev;
+             item->next = temp;
+             temp->prev = item;
            }
-   }
+    }
 };
 
 struct SYM {
- char ch;
- int prior;
+  char ch;
+  int prior;
 
- explicit SYM (char _ch = '0', int _prior = 0) : ch(_ch), prior(_prior) { };
+  explicit SYM(char _ch = '0', int _prior = 0) : ch(_ch), prior(_prior) { }
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
