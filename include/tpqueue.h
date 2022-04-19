@@ -25,11 +25,6 @@ class TPQueue {
     ITEM *current;
 
  public:
-    ~TPQueue() {
-     while (head)
-       pop();
-    }
-
     T pop() {
      if (head) {
        ITEM *temp = head->next;
