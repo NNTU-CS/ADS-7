@@ -1,10 +1,59 @@
-// Copyright 2022 NNTU-CS
+// Copyright 2022 Matvey Ryabchikov
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template<typename T>
+template <typename T>
 class TPQueue {
-  // реализация шаблона очереди с приоритетом на связанном списке
+ private:
+  struct ITEM {
+    T value;
+    ITEM* next;
+    ITEM* prev;
+  };
+  TPQueue::ITEM* create(const T& value) {
+    ITEM* item = new ITEM;
+    item->value = value;
+    item->next = item->prev = nullptr;
+    return item;
+  }
+  ITEM* tail;
+  ITEM* head;
+
+ public:
+  TPQueue() : head(nullptr), tail(nullptr) {}
+  void push(const T& value) {
+    ITEM* itemPlace = head;
+    ITEM* item = create(value);
+    while (itemPlace && itemPlace->value.prior >= value.prior)
+      itemPlace = itemPlace->next;
+    if (!itemPlace && head) {
+      tail->next = item;
+      item->prev = tail;
+      tail = item;
+      return;
+    } else if (!itemPlace && !head) {
+      head = tail = item;
+    } else if (!itemPlace->prev) {
+      head->prev = item;
+      item->next = head;
+      head = item;
+    } else {
+      itemPlace->prev->next = item;
+      item->prev = itemPlace->prev;
+      item->next = itemPlace;
+      itemPlace->prev = item;
+    }
+  }
+  T pop() {
+    if (!head || !tail) throw "The queue is empty";
+    ITEM* temp = head->next;
+    if (temp) temp->prev = nullptr;
+    T value = head->value;
+    delete head;
+    head = temp;
+    if (!head) tail = nullptr;
+    return value;
+  }
 };
 
 struct SYM {
