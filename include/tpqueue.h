@@ -4,7 +4,7 @@
 
 template<typename T>
 class TPQueue {
-  private:
+ private:
     struct ITEM {
         T val;
         ITEM* next;
@@ -16,11 +16,12 @@ class TPQueue {
     ITEM* create(T val) {
     ITEM* item = new ITEM;
     item->val = val;
-    item->next = nullptr; 
+    item->next = nullptr;
     item->prev = nullptr;
     return item;
 }
-  public:
+  
+ public:
     TPQueue() :head(nullptr), tail(nullptr) {}
 
     void push(T val) {
@@ -32,16 +33,13 @@ class TPQueue {
         tail->next = item;
         tail->next->prev = tail;
         tail = item;
-      }
-      else if (!cur && !head) {
+      } else if (!cur && !head) {
         head = tail = item;
-      }
-      else if (!cur->prev) {
+      } else if (!cur->prev) {
         cur->prev = item;
         item->next = cur;
         head = item;
-      }
-      else {
+      } else {
         cur->prev->next = item;
         item->prev = cur->prev;
         item->next = cur;
