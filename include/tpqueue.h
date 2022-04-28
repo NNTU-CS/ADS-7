@@ -21,7 +21,7 @@ class TPQueue {
     return item;
 }
  
- public:
+  public:
     TPQueue() :head(nullptr), tail(nullptr) {}
 
     void push(T val) {
