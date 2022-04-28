@@ -10,6 +10,8 @@ class TPQueue {
         ITEM* next;
         ITEM* prev;
     };
+  ITEM* head;
+  ITEM* tail;
 
     ITEM* create(T val) {
     ITEM* item = new ITEM;
