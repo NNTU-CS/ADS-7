@@ -39,18 +39,19 @@ void TPQueue<T>::push(const T& inf) {
         head = create(inf);
         dop = head;
         tail = head;
-    }
-    else 
+    } else
+    {
         if (tail->value.prior >= inf.prior) {
             if (tail->value.prior == inf.prior && tail->value.ch == inf.ch)
                 tail->value = inf;
         }
-    else 
+    } else 
+    {
         if (tail->value.prior >= inf.prior && tail->value.ch != inf.ch) {
             tail->next = create(inf);
             tail = tail->next;
         }
-    else 
+    } else {
         if (tail->value.prior < inf.prior) {
             if (inf.prior > head->value.prior) {
                 ITEM* tmp = NULL;
@@ -59,20 +60,20 @@ void TPQueue<T>::push(const T& inf) {
                 head = tmp;
             }
         }
-    else 
+    } else
+    {
         if (inf.prior == head->value.prior) {
             if (inf.ch == head->value.ch) {
                    head->value = inf;
             }
         }
-    else
+    } else
     {
         ITEM* dop = nullptr;
         dop = create(inf);
         dop->next = head->next;
         head->next = dop;
-    }
-    else
+    } else
     {
         if (inf.prior < head->value.prior) {
             ITEM* dop = nullptr;
