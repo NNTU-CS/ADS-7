@@ -3,98 +3,115 @@
 #define INCLUDE_TPQUEUE_H_
 
 template<typename T>
-class TPQueue {
-    struct ITEM {
-        T value;
+class TPQueue
+{
+    struct ITEM
+    {
+        T data;
         ITEM* next;
     };
- public:
+public:
     TPQueue() :head(nullptr), tail(nullptr) {}
     ~TPQueue();
     void push(const T&);
     T pop();
-    void print() const;
- private:
+private:
     TPQueue::ITEM* create(const T&);
     ITEM* head;
-    ITEM* dop;
+    ITEM* u;
     ITEM* tail;
 };
-  // реализация шаблона очереди с приоритетом на связанном списке
 template<typename T>
-typename TPQueue<T>::ITEM* TPQueue<T>::create(const T& value) {
+typename TPQueue<T>::ITEM* TPQueue<T>::create(const T& data)
+{
     ITEM* item = new ITEM;
-    item->value = value;
+    item->data = data;
     item->next = nullptr;
     return item;
 }
 template<typename T>
-TPQueue<T>::~TPQueue() {
+TPQueue<T>::~TPQueue()
+{
     while (head)
         pop();
 }
 template<typename T>
-void TPQueue<T>::push(const T& inf) {
-    if (head == nullptr) {
+void TPQueue<T>::push(const T& inf)
+{
+    if (head == nullptr)
+    {
         head = create(inf);
-        dop = head;
+        u = head;
         tail = head;
-    } else
+    }
+    else if (tail->data.prior >= inf.prior)
     {
-        if (tail->value.prior >= inf.prior) {
-            if (tail->value.prior == inf.prior && tail->value.ch == inf.ch)
-                tail->value = inf;
+        if (tail->data.prior == inf.prior && tail->data.ch == inf.ch)
+        {
+            tail->data = inf;
         }
-    } else 
+        else
+        {
+            if (tail->data.prior >= inf.prior && tail->data.ch != inf.ch)
+            {
+                tail->next = create(inf);
+                tail = tail->next;
+            }
+        }
+    }
+    else
     {
-        if (tail->value.prior >= inf.prior && tail->value.ch != inf.ch) {
-            tail->next = create(inf);
-            tail = tail->next;
-        }
-    } else {
-        if (tail->value.prior < inf.prior) {
-            if (inf.prior > head->value.prior) {
+        if (tail->data.prior < inf.prior)
+        {
+            if (inf.prior > head->data.prior)
+            {
                 ITEM* tmp = NULL;
                 tmp = create(inf);
                 tmp->next = head;
                 head = tmp;
             }
-        }
-    } else
-    {
-        if (inf.prior == head->value.prior) {
-            if (inf.ch == head->value.ch) {
-                   head->value = inf;
-            }
-        }
-    } else
-    {
-        ITEM* dop = nullptr;
-        dop = create(inf);
-        dop->next = head->next;
-        head->next = dop;
-    } else
-    {
-        if (inf.prior < head->value.prior) {
-            ITEM* dop = nullptr;
-            dop = create(inf);
-            dop->next = head->next;
-            head->next = dop;
+            else
+                if (inf.prior == head->data.prior)             
+                    if (inf.ch == head->data.ch)
+                        head->data = inf;
+                    else
+                    {
+                        ITEM* u = nullptr;
+                        u = create(inf);
+                        u->next = head->next;
+                        head->next = u;
+                    }
+                else
+                {
+                    if (inf.prior < head->data.prior)
+                    {
+                        ITEM* u = nullptr;
+                        u = create(inf);
+                        u->next = head->next;
+                        head->next = u;
+                    }
+                }
         }
     }
 }
+
 template<typename T>
-T TPQueue<T>::pop() {
-    if (head) {
+T TPQueue<T>::pop()
+{
+    if (head)
+    {
         ITEM* temp = head->next;
-        T value = head->value;
+        T data = head->data;
         delete head;
         head = temp;
-        return value;
+        return data;
     }
+    
 }
-struct SYM {
-  char ch;
-  int prior;
+struct SYM
+{
+    char ch;
+    int prior;
+    SYM* next;
 };
 #endif  // INCLUDE_TPQUEUE_H_
