@@ -43,7 +43,7 @@ class TPQueue {
     T pop() {
         if (tail && head) {
             ITEM* temp = head->next;
-        if (temp)
+            if (temp)
                 temp->prev = nullptr;
             T value = head->value;
             delete head;
@@ -78,7 +78,4 @@ class TPQueue {
         }
     }
 };
- 
-
-
 #endif  // INCLUDE_TPQUEUE_H_
