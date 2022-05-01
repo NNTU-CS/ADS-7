@@ -28,7 +28,7 @@ class TPQueue {
             pop();
     }
     T getNext() {
-        if (tail && head ) {
+        if (tail && head) {
             if (!actual)
                 actual = head;
             else if (actual->next)
@@ -41,8 +41,44 @@ class TPQueue {
         }
     }
     T pop() {
-        if (tail && head ) {
+        if (tail && head) {
             ITEM* temp = head->next;
+        if (temp)
+                temp->prev = nullptr;
+            T value = head->value;
+            delete head;
+            head = temp;
+            if (!head)
+                tail = nullptr;
+            return value;
+        } else {
+            throw std::string("Out of limit!");
+        }
+    }
+    void push(const T& value) {
+        ITEM* temp = head;
+        ITEM* item = create(value);
+        while (temp && temp->value.prior >= value.prior)
+            temp = temp->next;
+        if (!temp && head) {
+            tail->next = item;
+            item->prev = tail;
+            tail = item;
+        } else if (!temp && !head) {
+            head = tail = item;
+        } else if (!temp->prev) {
+            head->prev = item;
+            item->next = head;
+            head = item;
+        } else {
+            temp->prev->next = item;
+            item->prev = temp->prev;
+            item->next = temp;
+            temp->prev = item;
+        }
+    }
+};
+ 
 
 
 #endif  // INCLUDE_TPQUEUE_H_
