@@ -9,15 +9,15 @@ class TPQueue {
     T data;
     Node* next;
   };
-  Node* first;
+  Node* first_node;
 
  public:
-  TPQueue():first(nullptr) {}
+  TPQueue():first_node(nullptr) {}
   void push(T value) {
-    Node* first = first;
+    Node* first = first_node;
     if (first == nullptr) {
       first = new Node;
-      first = first;
+      first_node = first;
       first->data = value;
       first->next = nullptr;
     } else {
@@ -25,7 +25,7 @@ class TPQueue {
         temp->data = value;
         if (first->data.prior < temp->data.prior) {
           temp->next = first;
-          first = temp;
+          first_node = temp;
           return;
         }
         while (first != nullptr) {
@@ -44,10 +44,10 @@ class TPQueue {
   }
   T pop() {
     Node *first = nullptr;
-    first = first;
+    first = first_node;
     if (first != nullptr) {
         T extract = first->data;
-        first = first->next;
+        first_node = first->next;
         return extract;
     } else {
         throw "Empty queue!";
