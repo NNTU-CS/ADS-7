@@ -50,7 +50,7 @@ class TPQueue {
         first = first->next;
         return extract;
     } else {
-        throw "Empty!";
+        throw "Empty queue!";
     }
   }
 };
