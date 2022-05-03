@@ -16,9 +16,7 @@ class TPQueue {
   Node* first;
 
  public:
-  TPQueue():first(nullptr){}
   TPQueue():first(nullptr) {}
-
   void push(T value) {
     Node* first = first;
     if (first == nullptr) {
