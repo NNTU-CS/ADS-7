@@ -9,7 +9,6 @@ int prior;
 
 template<typename T>
 class TPQueue {
-
 struct ITEM {
 T data;
 ITEM* next;
@@ -31,7 +30,6 @@ TPQueue() :head(nullptr), tail(nullptr) {}
 while (head)
 pop();
 }
-
 void push(const T& data) {
 if (tail && head) {
 ITEM* temp = head;
