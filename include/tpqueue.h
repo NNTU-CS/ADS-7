@@ -36,8 +36,7 @@ rnow = rnow->sl;
 else
 throw std::string("Beyond border");
 return rnow->zn;
-}
-else {
+} else {
 throw std::string("Beyond border");
 }
 }
