@@ -2,7 +2,12 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template<typename T>
+struct SYM {
+  char ch;
+  int prior;
+};
+
+template<typename T = SYM>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
  private:
@@ -76,9 +81,6 @@ class TPQueue {
     }
 };
 
-struct SYM {
-  char ch;
-  int prior;
-};
+
 
 #endif  // INCLUDE_TPQUEUE_H_
