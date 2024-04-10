@@ -3,8 +3,10 @@
 #define INCLUDE_TPQUEUE_H_
 
 struct SYM {
-  char ch;
-  int prior;
+    char ch;
+    int prior;
+    SYM* prev;
+    SYM* next;
 };
 
 template<typename T = SYM>
@@ -62,7 +64,6 @@ class TPQueue {
                p->prev->next = p;
                count++;
            }
-
         }
     }
 
