@@ -11,7 +11,6 @@ class TPQueue {
   };
   Item* head;
   Item* tail;
- 
  public:
     TPQueue(): head(nullptr), tail(nullptr) {}
     void push(const T& value) {
@@ -34,7 +33,7 @@ class TPQueue {
       temp->next = It->next;
       It->next = temp;
       if (temp->next == nullptr)
-        last = temp;
+        tail = temp;
     }
     const T pop() {
       Item* temp = head;
