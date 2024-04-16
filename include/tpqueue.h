@@ -18,7 +18,7 @@ class TPQueue {
       Item* temp = new Item;
       temp->item = value;
       temp->next = nullptr;
-      if (head == nullptr) { 
+      if (head == nullptr) {
         head = temp;
         tail = temp;
         return;
