@@ -11,6 +11,7 @@ class TPQueue {
   };
   Item* head;
   Item* tail;
+
  public:
     TPQueue(): head(nullptr), tail(nullptr) {}
     void push(const T& value) {
@@ -27,20 +28,20 @@ class TPQueue {
         head = temp;
         return;
       }
-      Item* It = head;
-      while (It->next != nullptr && It->next->item.prior >= value.prior)
-        It = It->next;
-      temp->next = It->next;
-      It->next = temp;
+      Item* i = head;
+      while (i->next != nullptr && i->next->item.prior >= value.prior)
+        i = i->next;
+      temp->next = i->next;
+      i->next = temp;
       if (temp->next == nullptr)
         tail = temp;
     }
     const T pop() {
       Item* temp = head;
-      T otv = temp->item;
+      T Res = temp->item;
       head = head->next;
       delete temp;
-      return otv;
+      return Res;
     }
 };
 
