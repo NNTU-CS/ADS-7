@@ -13,8 +13,8 @@ template<typename T>
 class TPQueue {
  private:
     struct Slist {
+        T item;
         Slist *next;
-        T curr;
     };
     Slist *prev;
     Slist *end;
@@ -22,34 +22,45 @@ class TPQueue {
  public:
     TPQueue() : prev(nullptr), end(nullptr) {}
 
-    void push(const T &item) {
-        Slist *templ = new Slist;
-        templ->curr = item;
-        templ->next = nullptr;
+    void push(const T &val) {
+        Slist *temp = create(val);
         if (prev == nullptr) {
-            prev = templ;
-            end = templ;
-            return;
+            prev = temp;
+            end = temp;
+        } else {
+            if (val.prior > prev->item.prior) {
+                temp->next = prev;
+                prev = temp;
+            } else {
+                Slist *g = prev;
+                while (g->next != nullptr && g->next->item.prior >= val.prior)
+                    g = g->next;
+                temp->next = g->next;
+                g->next = temp;
+                if (temp->next == nullptr)
+                    end = temp;
+            }
         }
-        if (prev->curr.prior < item.prior) {
-            templ->next = prev;
-            prev = templ;
-        }
-        Slist *h = prev;
-        while (h->next != nullptr && h->next->curr.prior >= item.prior)
-            h = h->next;
-        templ->next = h->next;
-        h->next = templ;
-        if (templ->next == nullptr)
-            end = templ;
     }
 
     const T pop() {
-        Slist *templ = prev;
-        T result = templ->curr;
+        Slist *temp = prev;
+        T result = temp->item;
         prev = prev->next;
-        delete templ;
+        delete temp;
         return result;
+    }
+
+    bool isEmpty() const {
+        return prev == nullptr;
+    }
+
+ private:
+    Slist *create(const T &val) {
+        Slist *temp = new Slist;
+        temp->item = val;
+        temp->next = nullptr;
+        return temp;
     }
 };
 
