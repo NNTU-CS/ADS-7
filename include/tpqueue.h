@@ -57,7 +57,7 @@ class TPQueue {
             exit(EXIT_FAILURE);
         }
         Slist *temp = prev;
-        T result = temp->current;
+        T result = temp->curr;
         prev = prev->next;
         delete temp;
         return result;
