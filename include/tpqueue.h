@@ -20,18 +20,13 @@ class TPQueue {
     Slist *prev;
     Slist *end;
 
-    Slist *create(const T &item) {
-        Slist *templ = new Slist;
-        templ->curr = item;
-        templ->next = nullptr;
-        return templ;
-    }
-
  public:
     TPQueue() : prev(nullptr), end(nullptr) {}
 
     void push(const T &item) {
-        Slist *templ = create(item);
+        Slist *templ = new Slist;
+        templ->curr = item;
+        templ->next = nullptr;
         if (prev == nullptr) {
             prev = templ;
             end = templ;
