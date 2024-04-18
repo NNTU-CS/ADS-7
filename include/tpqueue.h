@@ -2,7 +2,6 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-#include <iostream>
 #include <string>
 
 struct SYM {
@@ -32,7 +31,7 @@ class TPQueue {
             end = templ;
             return;
         }
-        if (item.prior > prev->curr.prior) {
+        if (prev->curr.prior < item.prior) {
             templ->next = prev;
             prev = templ;
         }
@@ -46,15 +45,11 @@ class TPQueue {
     }
 
     const T pop() {
-        Slist *temp = prev;
-        T result = temp->curr;
+        Slist *templ = prev;
+        T result = templ->curr;
         prev = prev->next;
-        delete temp;
+        delete templ;
         return result;
-    }
-
-    bool isEmpty() const {
-        return prev == nullptr;
     }
 };
 
