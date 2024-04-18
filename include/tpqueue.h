@@ -2,6 +2,7 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+#include <iostream>
 #include <string>
 
 struct SYM {
@@ -14,14 +15,14 @@ class TPQueue {
  private:
     struct Slist {
         Slist *next;
-        T current;
+        T curr;
     };
     Slist *prev;
     Slist *end;
 
     Slist *create(const T &item) {
         Slist *templ = new Slist;
-        templ->current = item;
+        templ->curr = item;
         templ->next = nullptr;
         return templ;
     }
@@ -35,15 +36,15 @@ class TPQueue {
             end = templ;
             prev = templ;
         } else {
-            if (item.prior > prev->current.prior) {
+            if (item.prior > prev->curr.prior) {
                 templ->next = prev;
                 prev = templ;
             } else {
-                Slist *hoop = prev;
-                while (item.prior <= hoop->next->current.prior && hoop->next != nullptr)
-                    hoop = hoop->next;
-                templ = hoop->next;
-                hoop->next = templ;
+                Slist *h = prev;
+                while (item.prior <= h->next->curr.prior && h->next != nullptr)
+                    h = h->next;
+                templ->next = h->next;
+                h->next = templ;
                 if (templ->next == nullptr)
                     end = templ;
             }
@@ -65,7 +66,6 @@ class TPQueue {
     bool isEmpty() const {
         return prev == nullptr;
     }
-
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
