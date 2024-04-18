@@ -33,29 +33,24 @@ class TPQueue {
     void push(const T &item) {
         Slist *templ = create(item);
         if (prev == nullptr) {
-            end = templ;
             prev = templ;
-        } else {
-            if (item.prior > prev->curr.prior) {
-                templ->next = prev;
-                prev = templ;
-            } else {
-                Slist *h = prev;
-                while (item.prior <= h->next->curr.prior && h->next != nullptr)
-                    h = h->next;
-                templ->next = h->next;
-                h->next = templ;
-                if (templ->next == nullptr)
-                    end = templ;
-            }
+            end = templ;
+            return;
         }
+        if (item.prior > prev->curr.prior) {
+            templ->next = prev;
+            prev = templ;
+        }
+        Slist *h = prev;
+        while (h->next != nullptr && h->next->curr.prior >= item.prior)
+            h = h->next;
+        templ->next = h->next;
+        h->next = templ;
+        if (templ->next == nullptr)
+            end = templ;
     }
 
     const T pop() {
-        if (isEmpty()) {
-            std::cout << "empty!" << std::endl;
-            exit(EXIT_FAILURE);
-        }
         Slist *temp = prev;
         T result = temp->curr;
         prev = prev->next;
