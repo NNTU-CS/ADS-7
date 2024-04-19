@@ -6,59 +6,59 @@
 
 template <typename T>
 class TPQueue {
-private:
+    private:
 
-    struct Node {
-        T data;
-        Node* next;
-    };
+        struct Node {
+            T data;
+            Node* next;
+        };
 
-    Node* head;
-    Node* tail;
-public:
+        Node* head;
+        Node* tail;
+    public:
 
-    TPQueue() : head(nullptr), tail(nullptr) {}
+        TPQueue() : head(nullptr), tail(nullptr) {}
 
-    void push(const T& data) {
-        Node* newNode = new Node{data, nullptr};
+        void push(const T& data) {
+            Node* newNode = new Node{data, nullptr};
 
-        if (!head || head->data.prior < data.prior) {
-            newNode->next = head;
-            head = newNode;
-        } else {
-            Node* current = head;
-            while (current->next && current->next->data.prior >= data.prior) {
-                current = current->next;
+            if (!head || head->data.prior < data.prior) {
+                newNode->next = head;
+                head = newNode;
+            } else {
+                Node* current = head;
+                while (current->next && current->next->data.prior >= data.prior) {
+                    current = current->next;
+                }
+                newNode->next = current->next;
+                current->next = newNode;
             }
-            newNode->next = current->next;
-            current->next = newNode;
+
+            if (!tail) {
+                tail = head;
+            }
         }
 
-        if (!tail) {
-            tail = head;
-        }
-    }
+        T pop() {
+            if (!head) {
+                throw std::out_of_range("Queue is empty");
+            }
 
-    T pop() {
-        if (!head) {
-            throw std::out_of_range("Queue is empty");
-        }
+            T data = head->data;
+            Node* temp = head;
+            head = head->next;
+            delete temp;
 
-        T data = head->data;
-        Node* temp = head;
-        head = head->next;
-        delete temp;
+            if (!head) {
+                tail = nullptr;
+            }
 
-        if (!head) {
-            tail = nullptr;
+            return data;
         }
 
-        return data;
-    }
-
-    bool isEmpty() const {
-        return !head;
-    }
+        bool isEmpty() const {
+            return !head;
+        }
 };
 
 struct SYM {
