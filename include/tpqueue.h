@@ -13,6 +13,15 @@ class Node {
  public:
     Node* prev, * next;
     SYM data;
+    Node(SYM data) {
+        this->data = data;
+        this->next = NULL;
+    }
+    Node(const Node &t) {
+        prev = t.prev;
+        next = t.next;
+        data = t.data;
+    }
     Node *insert(SYM data) {
         Node *_next = this->next;
         this->next = new Node(data);
@@ -59,7 +68,8 @@ class TPQueue {
     }
     void push(SYM a) {
         if (!size) {
-            head = tail = new Node(a);
+            tail = new Node(a);
+            head = tail;
             size++;
             return;
         }
