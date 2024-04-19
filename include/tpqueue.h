@@ -9,91 +9,53 @@ struct SYM {
     int prior;
 };
 
-class Node {
- public:
-    Node* prev, * next;
-    SYM data;
-    Node() {}
-    explicit Node(SYM data) {
-        this->data = data;
-        this->next = NULL;
-    }
-    Node(const Node &t) {
-        prev = t.prev;
-        next = t.next;
-        data = t.data;
-    }
-    Node *insert(SYM data) {
-        Node *_next = this->next;
-        this->next = new Node(data);
-        this->next->next = _next;
-        this->next->prev = this;
-        if (_next) {
-            _next->prev = this->next;
-        }
-        return this->next;
-    }
-    Node* erase() {
-        Node* _next = this->next;
-        Node* _pred = this->prev;
-        delete(this);
-        if (_next) {
-            _next->prev = _pred;
-        }
-        if (_pred) {
-            _pred->next = _next;
-            return _pred;
-        }
-        return _next;
-    }
-};
-
-template <typename T>
-
 class TPQueue {
- public:
-    Node* head, * tail;
-    int size;
+ private:
+    struct Node {
+        SYM data;
+        Node* next;
+    };
 
- public:
-    TPQueue() {
-        this->head = this->tail = NULL;
-        size = 0;
-    }
-    SYM pop() {
-        if (!size) throw "error";
-        SYM tmp = head->data;
-        head = head->erase();
-        size--;
-        return tmp;
-    }
-    void push(SYM a) {
-        if (!size) {
-            tail = new Node(a);
-            head = tail;
-            size++;
-            return;
-        }
-        Node* cur = tail;
-        while (cur && cur->data.prior < a.prior) {
-            cur = cur->next;
-        }
-        if (cur) {
-            if (cur == tail) {
-                tail = cur->insert(a);
-            } else {
-                cur->insert(a);
-            }
+    Node* head, * tail;
+
+public:
+    TPQueue() : head(nullptr), tail(nullptr) {}
+
+    void push(const SYM& a) {
+        Node* ptr = new Node{ a, nullptr };
+
+        if (!head || head->data.prior < a.prior) {
+            ptr->next = head;
+            head = ptr;
         } else {
-            head = head->insert(a);
+            Node* cur = head;
+            while (cur->next && cur->data.prior >= a.prior) {
+                cur = cur->next;
+            }
+            ptr->next = cur->next;
+            cur->next = ptr;
         }
-        size++;
+
+        if (!tail) {
+            tail = head;
+        }
     }
-    ~TPQueue() {
-        while (size) {
-            std::cout << pop().ch;
+
+    SYM pop() {
+        if (!head) {
+            throw "empty!";
         }
+
+        SYM data = head->data;
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+
+        if (!head) {
+            tail = nullptr;
+        }
+
+        return data;
     }
 };
-
 #endif  // INCLUDE_TPQUEUE_H_
