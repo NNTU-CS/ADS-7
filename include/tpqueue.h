@@ -13,7 +13,6 @@ class Node {
  public:
     Node* prev, * next;
     SYM data;
-    Node() {}
     Node(SYM data) {
         this->data = data;
         this->next = NULL;
@@ -75,7 +74,9 @@ class TPQueue {
         if (cur) {
             if (cur == tail){
                 tail = cur->insert(a);
-            } else cur->insert(a);
+            } else {
+                cur->insert(a);
+            }
         } else {
             head = head->insert(a);
         }
