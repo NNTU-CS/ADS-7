@@ -18,7 +18,7 @@ class Node {
         this->next = new Node(data);
         this->next->next = _next;
         this->next->prev = this;
-        if(_next) {
+        if (_next) {
             _next->prev = this->next;
         }
         return this->next;
@@ -27,10 +27,10 @@ class Node {
         Node *_next = this->next;
         Node *_pred = this->prev;
         delete(this);
-        if(_next) {
+        if (_next) {
             _next->prev = _pred;
         }
-        if(_pred) {
+        if (_pred) {
             _pred->next = _next;
             return _pred;
         }
