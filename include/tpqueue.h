@@ -6,8 +6,8 @@
 
 template <typename T>
 class TPQueue {
-    
 private:
+
     struct Node {
         T data;
         Node* next;
@@ -15,8 +15,8 @@ private:
 
     Node* head;
     Node* tail;
-
 public:
+
     TPQueue() : head(nullptr), tail(nullptr) {}
 
     void push(const T& data) {
