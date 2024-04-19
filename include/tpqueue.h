@@ -29,7 +29,7 @@ class TPQueue {
         return;
       }
       Item* i = head;
-      while (i->next != nullptr && i->next->item.prior >= value.prior)
+      while (i->next != nullptr && i->next->item.prior >= data.prior)
         i = i->next;
       temp->next = i->next;
       i->next = temp;
