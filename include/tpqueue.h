@@ -23,7 +23,7 @@ class TPQueue {
         tail = temp;
         return;
       }
-      else if (head->item.prior < data.prior) {
+      if (head->item.prior < data.prior) {
         temp->next = head;
         head = temp;
         return;
