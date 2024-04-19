@@ -4,8 +4,6 @@
 
 #include <string>
 #include <iostream>
-using namespace std;
-
 struct SYM {
     char ch;
     int prior;
@@ -17,8 +15,8 @@ class Node {
     SYM data;
     Node() {}
     Node(SYM data) {
-    this->data = data;
-    this->next = NULL;
+        this->data = data;
+        this->next = NULL;
     }
     Node* insert(SYM data) {
         Node* _next = this->next;
@@ -75,9 +73,9 @@ class TPQueue {
             cur = cur->next;
         }
         if (cur) {
-            if (cur == tail)
+            if (cur == tail){
                 tail = cur->insert(a);
-            else cur->insert(a);
+            } else cur->insert(a);
         } else {
             head = head->insert(a);
         }
