@@ -9,8 +9,9 @@ struct SYM {
     int prior;
 };
 
-class TPQueue {
+template <typename T>
 
+class TPQueue {
  private:
     struct Node {
         SYM data;
