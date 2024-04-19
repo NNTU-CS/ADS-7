@@ -14,16 +14,16 @@ class TPQueue {
 
  public:
     TPQueue(): head(nullptr), tail(nullptr) {}
-    void push(const T& value) {
+    void push(const T& data) {
       Item* temp = new Item;
-      temp->item = value;
+      temp->item = data;
       temp->next = nullptr;
       if (head == nullptr) {
         head = temp;
         tail = temp;
         return;
       }
-      if (head->item.prior < value.prior) {
+      else if (head->item.prior < data.prior) {
         temp->next = head;
         head = temp;
         return;
