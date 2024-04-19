@@ -13,6 +13,7 @@ class Node {
  public:
     Node* prev, * next;
     SYM data;
+    Node() {}
     explicit Node(SYM data) {
         this->data = data;
         this->next = NULL;
