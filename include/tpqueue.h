@@ -13,19 +13,28 @@ class Node {
  public:
     Node* prev, * next;
     SYM data;
-    Node(SYM data) {
-        this->data = data;
-        this->next = NULL;
-    }
-    Node* insert(SYM data) {
-        Node* _next = this->next;
+    Node *insert(SYM data) {
+        Node *_next = this->next;
         this->next = new Node(data);
         this->next->next = _next;
         this->next->prev = this;
-        if (_next) {
+        if(_next) {
             _next->prev = this->next;
         }
         return this->next;
+    }
+    Node *erase() {
+        Node *_next = this->next;
+        Node *_pred = this->prev;
+        delete(this);
+        if(_next) {
+            _next->prev = _pred;
+        }
+        if(_pred) {
+            _pred->next = _next;
+            return _pred;
+        }
+        return _next;
     }
     Node* erase() {
         Node* _next = this->next;
@@ -72,7 +81,7 @@ class TPQueue {
             cur = cur->next;
         }
         if (cur) {
-            if (cur == tail){
+            if (cur == tail) {
                 tail = cur->insert(a);
             } else {
                 cur->insert(a);
@@ -84,7 +93,7 @@ class TPQueue {
     }
     ~TPQueue() {
         while (size) {
-            std::cout << pop().ch << "\n";
+            std::cout << pop().ch;
         }
     }
 };
