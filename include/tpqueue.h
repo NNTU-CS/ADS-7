@@ -23,19 +23,6 @@ class Node {
         }
         return this->next;
     }
-    Node *erase() {
-        Node *_next = this->next;
-        Node *_pred = this->prev;
-        delete(this);
-        if (_next) {
-            _next->prev = _pred;
-        }
-        if (_pred) {
-            _pred->next = _next;
-            return _pred;
-        }
-        return _next;
-    }
     Node* erase() {
         Node* _next = this->next;
         Node* _pred = this->prev;
