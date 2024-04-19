@@ -31,7 +31,7 @@ class TPQueue {
             head = ptr;
         } else {
             Node* cur = head;
-            while (cur->next && cur->data.prior >= a.prior) {
+            while (cur->next && cur->next->a.prior >= a.prior) {
                 cur = cur->next;
             }
             ptr->next = cur->next;
