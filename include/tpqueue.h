@@ -13,11 +13,11 @@ class TPQueue {
         };
         Node* head;
         Node* tail;
+
     public:
         TPQueue() : head(nullptr), tail(nullptr) {}
         void push(const T& data) {
             Node* newNode = new Node{data, nullptr};
-
             if (!head || head->data.prior < data.prior) {
                 newNode->next = head;
                 head = newNode;
