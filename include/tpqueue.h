@@ -10,6 +10,7 @@ struct SYM {
 };
 
 class TPQueue {
+
  private:
     struct Node {
         SYM data;
@@ -18,7 +19,7 @@ class TPQueue {
 
     Node* head, * tail;
 
-public:
+ public:
     TPQueue() : head(nullptr), tail(nullptr) {}
 
     void push(const SYM& a) {
