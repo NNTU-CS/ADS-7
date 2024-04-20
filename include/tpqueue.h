@@ -4,7 +4,7 @@
 
 template<typename T>
 class TPQueue {
-   private:
+ private:
     struct ELEMENT {
         T data;
         ELEMENT* next;
@@ -17,7 +17,7 @@ class TPQueue {
     ~TPQueue() {
         while (head)
             pop();
-    }   
+    } 
     void push(const T& data) {
         ELEMENT* exmplocheredi = new ELEMENT;
         exmplocheredi->data = data;
@@ -34,7 +34,7 @@ class TPQueue {
                     current = current->next;
                 exmplocheredi->next = current->next;
                 current->next = exmplocheredi;
-            }
+              }
         }
         if (!ukazatel || data.prior <= ukazatel->data.prior)
             ukazatel = exmplocheredi;
