@@ -2,6 +2,7 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 #include <iostream>
+#include <string>
 
 template<typename T>
 class TPQueue {
@@ -24,8 +25,7 @@ class TPQueue {
             delete head;
             head = temp;
             return data;
-        }
-        else
+        } else
             throw(std::string("Empty"));
     }
     void push(const T& data) {
@@ -34,13 +34,11 @@ class TPQueue {
                 ITEM* temp = create(data);
                 temp->next = head;
                 head = temp;
-            }
-            else if(tail->data.prior >= data.prior) {
+            } else if (tail->data.prior >= data.prior) {
                 ITEM* temp = create(data);
                 tail->next = temp;
                 tail = temp;
-            }
-            else {
+            } else {
                 ITEM* temp = create(data);
                 ITEM* cur = head;
                 while (cur->next->data.prior >= data.prior) {
@@ -49,8 +47,7 @@ class TPQueue {
                 temp->next = cur->next;
                 cur->next = temp;
             }
-        }
-        else {
+        } else {
             head = create(data);
             tail = head;
         }
