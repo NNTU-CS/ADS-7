@@ -17,7 +17,7 @@ class TPQueue {
     ~TPQueue() {
         while (head)
             pop();
-    } 
+    }
     void push(const T& data) {
         ELEMENT* exmplocheredi = new ELEMENT;
         exmplocheredi->data = data;
@@ -35,7 +35,7 @@ class TPQueue {
                 exmplocheredi->next = current->next;
                 current->next = exmplocheredi;
               }
-        }
+          }
         if (!ukazatel || data.prior <= ukazatel->data.prior)
             ukazatel = exmplocheredi;
     }
