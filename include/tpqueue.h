@@ -22,9 +22,9 @@ class TPQueue {
         ELEMENT* exmplocheredi = new ELEMENT;
         exmplocheredi->data = data;
         exmplocheredi->next = nullptr;
-        if (!head)
+        if (!head) {
             head = exmplocheredi;
-        else {
+        } else {
             if (data.prior > head->data.prior) {
                 exmplocheredi->next = head;
                 head = exmplocheredi;
@@ -36,8 +36,9 @@ class TPQueue {
                 current->next = exmplocheredi;
               }
           }
-        if (!ukazatel || data.prior <= ukazatel->data.prior)
+        if (!ukazatel || data.prior <= ukazatel->data.prior) {
             ukazatel = exmplocheredi;
+        }
     }
     T pop() {
         if (!head)
