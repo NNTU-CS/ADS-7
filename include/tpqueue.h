@@ -78,4 +78,9 @@ T TPQueue<T>::pop() {
     return data;
 }
 
+struct SYM {
+    char ch;
+    int prior;
+};
+
 #endif  // INCLUDE_TPQUEUE_H_
