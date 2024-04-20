@@ -6,10 +6,11 @@ template<typename T>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
  private:
-    Node* head;
+    struct Node* head;
+
  public:
     TPQueue() : head(nullptr) {}
-    void push(SYM sim) {
+    void push(T sim) {
         Node* newSim = new Node{ sim, nullptr };
         if (!head || sim.prior > head->data.prior) {
             newSim->next = head;
