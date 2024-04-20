@@ -25,7 +25,7 @@ class TPQueue {
             delete head;
             head = temp;
             return data;
-        } else
+        } else 
             throw(std::string("Empty"));
     }
     void push(const T& data) {
