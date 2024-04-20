@@ -33,32 +33,28 @@ TPQueue<T>::~TPQueue() {
 }
 
 template<typename T>
-void TPQueue<T>::push(const T &item) {
-    ITEM *temp = new ITEM;
+void TPQueue<T>::push(const T& item) {
+    // Создаем новый элемент очереди
+    ITEM* temp = new ITEM;
     temp->data = item;
     temp->prior = item.prior;
     temp->next = nullptr;
 
-    if (last != nullptr) {
-        ITEM *cur = last;
-        ITEM *prev = nullptr;
-        while (cur != nullptr && item.prior > cur->prior) {
-            prev = cur;
+    if (first == nullptr || item.prior > first->prior) {
+        temp->next = first;
+        first = temp;
+    } else {
+        ITEM* cur = first;
+        while (cur->next != nullptr && cur->next->prior >= item.prior) {
             cur = cur->next;
         }
-
-        if (prev == nullptr) {
-            temp->next = first;
-            first = temp;
-        } else {
-            prev->next = temp;
-            temp->next = cur;
-        }
-    } else {
-        first = temp;
+        temp->next = cur->next;
+        cur->next = temp;
     }
 
-    last = temp;
+    if (temp->next == nullptr) {
+        last = temp;
+    }
 }
 
 template<typename T>
