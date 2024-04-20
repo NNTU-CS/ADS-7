@@ -4,7 +4,7 @@
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     struct iList {
         T data;
         iList *next;
@@ -18,7 +18,7 @@ private:
         return item;
     }
 
-public:
+ public:
     TPQueue() : head(nullptr), tail(nullptr) {}
 
     ~TPQueue() {
