@@ -4,20 +4,20 @@
 
 template<typename T>
 class TPQueue {
-  private:
+   private:
     struct ELEMENT {
         T data;
         ELEMENT* next;
     };
     ELEMENT* head;
     ELEMENT* ukazatel;
+
  public:
     TPQueue() : head(nullptr), ukazatel(nullptr) {}
     ~TPQueue() {
         while (head)
             pop();
-    }
-    
+    }   
     void push(const T& data) {
         ELEMENT* exmplocheredi = new ELEMENT;
         exmplocheredi->data = data;
@@ -39,7 +39,6 @@ class TPQueue {
         if (!ukazatel || data.prior <= ukazatel->data.prior)
             ukazatel = exmplocheredi;
     }
-    
     T pop() {
         if (!head)
             throw "Queue empty";
@@ -51,7 +50,6 @@ class TPQueue {
             ukazatel = nullptr;
         return data;
     }
-    
     bool isEmpty() const {
         return head == nullptr;
     }
