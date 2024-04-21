@@ -13,6 +13,7 @@ class TPQueue {
     };
     Node* begin;
     Node* end;
+
  public:
     TPQueue() : begin(nullptr), end(nullptr) {}
 
