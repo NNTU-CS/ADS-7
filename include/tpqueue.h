@@ -24,9 +24,9 @@ class TPQueue {
  public:
   TPQueue() {
     head = tail = current = nullptr;
-	}
+ }
   ~TPQueue() {
-    if (IsEmpty()){
+    if (IsEmpty()) {
       return;
     } else if (head->next) {
       current = head->next;
@@ -48,7 +48,7 @@ class TPQueue {
       if (sym.prior <= head->data.prior && sym.prior > tail->data.prior) {
         while (sym.prior <= current->data.prior) {
           current = current->next;
-				}
+	}
         current = current->prev;
         temp->prev = current;
         temp->next = current->next;
@@ -78,7 +78,7 @@ class TPQueue {
         tail = nullptr;
       return data;
     } else {
-      T fake{'0',-10};
+      T fake{'0', -10};
       return fake;
     }
   }
