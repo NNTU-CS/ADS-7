@@ -2,6 +2,8 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+#include <stdexcept>
+
 template<typename T>
 struct Node {
     T data;
@@ -29,21 +31,21 @@ class TPQueue {
         }
     }
 
-    void push(const T& data, int prior) {
-        Node<T>* newNode = new Node<T>(data, prior);
+    void push(const T& data) {
+    Node<T>* newNode = new Node<T>(data, data.prior);
 
-        if (!head || prior > head->prior) {
-            newNode->next = head;
-            head = newNode;
-        } else {
-            Node<T>* current = head;
-            while (current->next && prior <= current->next->prior) {
-                current = current->next;
-            }
-            newNode->next = current->next;
-            current->next = newNode;
+    if (!head || data.prior > head->prior) {
+        newNode->next = head;
+        head = newNode;
+    } else {
+        Node<T>* current = head;
+        while (current->next && data.prior <= current->next->prior) {
+            current = current->next;
         }
+        newNode->next = current->next;
+        current->next = newNode;
     }
+}
 
     T pop() {
         if (isEmpty()) {
