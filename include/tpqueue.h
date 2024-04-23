@@ -10,10 +10,16 @@ struct Node {
     Node(const T& d, int p) : data(d), prior(p), next(nullptr) {}
 };
 
+struct SYM {
+  char ch;
+  int prior;
+};
+
 template<typename T>
 class TPQueue {
  private:
     Node<T>* head;
+
  public:
     TPQueue() : head(nullptr) {}
 
@@ -54,10 +60,5 @@ class TPQueue {
         return !head;
     }
 };
-
-struct SYM {
-  char ch;
-  int prior;
-};
-
 #endif  // INCLUDE_TPQUEUE_H_
+
