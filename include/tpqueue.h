@@ -23,7 +23,7 @@ class TPQueue {
       a = newQu;
     } else {
       QuList* c = a;
-      while (c->next!=nullptr && c->next->it.prior >= f.prior) {
+      while (c->next != nullptr && c->next->it.prior >= f.prior) {
         c = c->next;
       }
       newQu->next = c->next;
