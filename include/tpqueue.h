@@ -18,6 +18,7 @@ class TPQueue{
         Node* next;
     };
     Node* prev;
+
  public:
     TPQueue() : prev(nullptr) {}
 
@@ -29,8 +30,10 @@ class TPQueue{
             prev = newNode;
         } else {
             Node* current = prev;
-            while (current->next != nullptr && current->next->data.prior >= data.prior) {
-                current = current->next;
+            while (current->next != nullptr) {
+                if (current->next->data.prior >= el.prior) {
+                  current = current->next;
+                }
             }
             newNode->next = current->next;
             current->next = newNode;
