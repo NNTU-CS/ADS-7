@@ -26,7 +26,7 @@ class TPQueue {
       Node* temp;
       while (prev) {
         temp = prev;
-        prev = head->next;
+        prev = prev->next;
         delete temp;
       }
     }
