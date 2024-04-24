@@ -23,14 +23,14 @@ class TPQueue {
     TPQueue() : prev(nullptr) {}
 
     ~TPQueue() {
-      while (head) {
-            Node* temp = head;
-            head = head->next;
+      while (prev) {
+            Node* temp = prev;
+            prev = prev->next;
             delete temp;
         }
       }
     void push(const SYM& el) {
-        Node* newNode = new Node{el, nulptr};
+        Node* newNode = new Node{el, nullptr};
         if (prev == nullptr || prev->data.prior < el.prior) {
             newNode->next = prev;
             prev = newNode;
