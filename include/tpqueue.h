@@ -5,6 +5,11 @@
 #include <stdexcept>
 #include <string>
 
+struct SYM {
+  char ch;
+  int prior;
+};
+
 template<typename T>
 class TPQueue{
  private:
@@ -16,10 +21,10 @@ class TPQueue{
  public:
     TPQueue() : prev(nullptr) {}
 
-    void push(const SYM& data) {
+    void push(const SYM& el) {
         Node* newNode = new Node;
-        newNode->data = data;
-        if (prev == nullptr || prev->data.prior < data.prior) {
+        newNode->data = el;
+        if (prev == nullptr || prev->data.prior < el.prior) {
             newNode->next = prev;
             prev = newNode;
         } else {
@@ -43,9 +48,6 @@ class TPQueue{
         return data;
     }
 };
-struct SYM {
-  char ch;
-  int prior;
-};
+
 
 #endif  // INCLUDE_TPQUEUE_H_
