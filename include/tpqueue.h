@@ -19,7 +19,7 @@ class TPQueue {
       temp->item = value;
       temp->next = nullptr;
       if (started == nullptr) {
-        staredt = temp;
+        started = temp;
         del = temp;
         return;
       }
