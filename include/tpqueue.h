@@ -4,20 +4,25 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+
 template<typename T>
 class TPQueue{
  private:
+    struct Node {
+        SYM data;
+        Node* next;
+    };
     Node* prev;
  public:
     TPQueue() : prev(nullptr) {}
+
     void push(const SYM& data) {
         Node* newNode = new Node;
         newNode->data = data;
         if (prev == nullptr || prev->data.prior < data.prior) {
             newNode->next = prev;
             prev = newNode;
-        }
-        else {
+        } else {
             Node* current = prev;
             while (current->next != nullptr && current->next->data.prior >= data.prior) {
                 current = current->next;
@@ -30,12 +35,11 @@ class TPQueue{
     SYM pop() {
         if (prev == nullptr) {
             throw std::string("Queue is empty");
-            return SYM();
         }
-        Node* temp = prev;
+        Node* t = prev;
         prev = prev->next;
-        SYM data = temp->data;
-        delete temp;
+        SYM data = t->data;
+        delete t;
         return data;
     }
 };
