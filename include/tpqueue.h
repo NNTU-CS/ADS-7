@@ -19,14 +19,13 @@ class TPQueue {
         return item;
     }
 
-  public:
+ public:
     TPQueue() : head(nullptr), tail(nullptr) {}
     void addTail(const T& data) {
         if (tail && head) {
             tail->next = create(data);
             tail = tail->next;
-        }
-        else {
+        } else {
             head = create(data);
             tail = head;
         }
@@ -36,8 +35,7 @@ class TPQueue {
             Item* temp = create(data);
             temp->next = head;
             head = temp;
-        }
-        else {
+        } else {
             head = create(data);
             tail = head;
         }
@@ -46,9 +44,9 @@ class TPQueue {
         int pr = item.prior;
         if (head == nullptr || head->data.prior < pr)
             addHead(item);
-        else if (tail->data.prior > pr)
+        else if (tail->data.prior > pr) {
             addTail(item);
-        else {
+        } else {
             Item* elem = head;
             while (elem->next && elem->next->data.prior >= pr) {
                 elem = elem->next;
