@@ -42,9 +42,9 @@ class TPQueue {
     }
     void push(const T& item) {
         int pr = item.prior;
-        if (head == nullptr || head->data.prior < pr)
+        if (head == nullptr || head->data.prior < pr) {
             addHead(item);
-        else if (tail->data.prior > pr) {
+        } else if (tail->data.prior > pr) {
             addTail(item);
         } else {
             Item* elem = head;
