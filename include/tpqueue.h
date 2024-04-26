@@ -2,59 +2,73 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+#include <string>
+#include <stdexcept>
+
 template<typename T>
-class tpqueue {
-private:
-    struct node {
+class TPQueue {
+    struct Item {
         T data;
         int priority;
-        node* next;
+        Item* next;
     };
-    node* head;
-    node* tail;
 
-public:
-    tpqueue() : head(nullptr), tail(nullptr) {}
-    ~tpqueue() {
-        while (!isEmpty()) {
-            remove();
-        }
-    }
-    void insert(const T& item, int priority) {
-        node* newNode = new node;
-        newNode->data = item;
-        newNode->priority = priority;
-        newNode->next = nullptr;
-        if (isEmpty()) {
-            head = tail = newNode;
-        } else if (priority >= head->priority) {
-            newNode->next = head;
-            head = newNode;
-        } else {
-            node* current = head;
-            while (current->next && priority < current->next->priority) {
-                current = current->next;
-            }
-            newNode->next = current->next;
-            current->next = newNode;
-        }
-    }
-    T remove() {
-        if (isEmpty()) {
-            throw std::out_of_range("Queue is empty");
-        }
-        T item = head->data;
-        node* temp = head;
-        head = head->next;
-        delete temp;
-        if (isEmpty()) {
-            tail = nullptr;
-        }
+private:
+    Item* head;
+    Item* tail;
+
+    Item* create(const T& data, int priority) {
+        Item* item = new Item;
+        item->next = nullptr;
+        item->data = data;
+        item->priority = priority;
         return item;
     }
-    bool isEmpty() const {
-        return head == nullptr;
+
+public:
+    TPQueue() : head(nullptr), tail(nullptr) {}
+
+    void push(const T& data, int priority) {
+        Item* temp = create(data, priority);
+      
+        if (!head) {
+            head = temp;
+            tail = temp;
+        }
+        else if (priority > head->priority) {
+            temp->next = head;
+            head = temp;
+        }
+        else if (priority <= tail->priority) {
+            tail->next = temp;
+            tail = temp;
+        }
+        else {
+            Item* current = head;
+            while (current->next->priority >= priority) {
+                current = current->next;
+            }
+            temp->next = current->next;
+            current->next = temp;
+        }
+    }
+
+    T pop() {
+        if (head) {
+            Item* temp = head->next;
+            T data = head->data;
+            delete head;
+            head = temp;
+            return data;
+        }
+        else {
+            throw std::out_of_range("Queue is empty");
+        }
     }
 };
 
+struct Sym {
+    char ch;
+    int prior;
+};
 #endif  // INCLUDE_TPQUEUE_H_
