@@ -8,45 +8,49 @@ template<typename T>
 class TPQueue {
     struct ITEM {
         T data;
-        int priority;
         ITEM* next;
     };
 
 private:
     ITEM* head;
     ITEM* tail;
-    ITEM* create(const T& data, int priority) {
-        ITEM* newItem = new item;
+    ITEM* create(const T& data) {
+        ITEM* Item = new ITEM;
         newItem->next = nullptr;
         newItem->data = data;
-        newItem->priority = priority;
-        return newItem;
+        return item;
     }
 
 public:
-    tpqeue() {
-    head = null;
-    tail = null;
+    TPQeue() {
+    head = nullptr;
+    tail = nullptr;
     }
     void push(const T& data) {
         if (head && tail) {
-            if (priority > head->priority) {
+            if (data.priority > head->data.priority) {
                 ITEM* temp = create(data);
                 temp->next = head;
                 head = temp;
-        } else if (tail->priority >= priority) {
+        } else if (tail->data.priority >= data.priority) {
                 ITEM* temp = create(data);
                 tail->next = temp;
                 tail = temp;
             } else {
             ITEM* temp = create(data);
             ITEM* current = head;
-            while (current->next->priority >= priority) {
+            while (current->next->data.priority >= data.priority) {
+                current = current->next;
+            }
+                } else {
+            ITEM* temp = create(data);
+            ITEM* current = head;
+            while (current->next->data.priority >= data.priority) {
                 current = current->next;
             }
             temp->next = current->next;
             current->next = temp;
-        }
+            }
         } else {
             head = create(data);
             tail = head;
@@ -60,10 +64,10 @@ public:
             head = temp;
             return data;
         } else {
-            throw std::out_of_range("queue is empty");
+            throw std::string("queue is empty");
         }
     }
-}
+};
 
 struct SYM {
     char ch;
