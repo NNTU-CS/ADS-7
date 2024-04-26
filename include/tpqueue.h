@@ -52,7 +52,7 @@ class TPQueue {
 }
     T pop() {
         if (head) {
-            ITEM* temp = head->next;
+            ITEM* temp = head->nnext;
             T data = head->data;
             delete head;
             head = temp;
