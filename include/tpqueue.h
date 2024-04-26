@@ -16,11 +16,9 @@ class TPQueue {
 
     VAL *head;
     VAL *tail;
+
  public:
-
-    TPQueue() : head(nullptr), tail(nullptr) {};
-
-    TPQueue(const T &);
+    TPQueue() : head(nullptr), tail(nullptr) {}
 
     ~TPQueue();
 
@@ -31,7 +29,6 @@ class TPQueue {
     void rmTail();
 
 };
-
 
 template<typename T>
 typename TPQueue<T>::VAL *TPQueue<T>::create(const T &data) {
@@ -106,7 +103,7 @@ void TPQueue<T>::rmTail() {
 }
 
 struct SYM {
-    char data;
+    char ch;
     int prior;
 };
 
