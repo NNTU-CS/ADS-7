@@ -7,7 +7,7 @@ template<typename T>
 class TPQueue {
     struct ITEM {
         T data;
-        ITEM* next;
+        ITEM* nnext;
     };
 
  private:
@@ -17,7 +17,7 @@ class TPQueue {
     ITEM* create(const T& data) {
         ITEM* item = new ITEM;
         item->data = data;
-        item->next = nullptr;
+        item->nnext = nullptr;
         return item;
     }
 
