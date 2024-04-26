@@ -1,12 +1,10 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-
 #include <string>
-#include <stdexcept>
 
 template<typename T>
-class tpqueue {
+class TPQueue {
     struct ITEM {
         T data;
         int priority;
@@ -14,9 +12,9 @@ class tpqueue {
     };
 
 private:
+
     ITEM* head;
     ITEM* tail;
-
     ITEM* create(const T& data, int priority) {
         ITEM* newItem = new item;
         newItem->next = nullptr;
@@ -26,8 +24,7 @@ private:
     }
 
 public:
-    tpqueue() : head(nullptr), tail(nullptr) {}
-
+    TPQueue() : head(nullptr), tail(nullptr) {}
     void push(const T& data, int priority) {
         ITEM* temp = create(data, priority);
         if (!head) {
@@ -48,7 +45,6 @@ public:
             current->next = temp;
         }
     }
-
     T pop() {
         if (head) {
             ITEM* temp = head->next;
