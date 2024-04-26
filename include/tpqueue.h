@@ -34,16 +34,13 @@ public:
         if (!head) {
             head = temp;
             tail = temp;
-        }
-        else if (priority > head->priority) {
+        } else if (priority > head->priority) {
             temp->next = head;
             head = temp;
-        }
-        else if (priority <= tail->priority) {
+        } else if (priority <= tail->priority) {
             tail->next = temp;
             tail = temp;
-        }
-        else {
+        } else {
             Item* current = head;
             while (current->next->priority >= priority) {
                 current = current->next;
@@ -60,8 +57,7 @@ public:
             delete head;
             head = temp;
             return data;
-        }
-        else {
+        } else {
             throw std::out_of_range("Queue is empty");
         }
     }
