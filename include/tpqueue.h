@@ -6,31 +6,30 @@
 #include <stdexcept>
 
 template<typename T>
-class TPQueue {
-    struct Item {
+class tpqueue {
+    struct item {
         T data;
         int priority;
-        Item* next;
+        item* next;
     };
 
 private:
-    Item* head;
-    Item* tail;
+    item* head;
+    item* tail;
 
-    Item* create(const T& data, int priority) {
-        Item* item = new Item;
-        item->next = nullptr;
-        item->data = data;
-        item->priority = priority;
-        return item;
+    item* create(const T& data, int priority) {
+        item* newItem = new item;
+        newItem->next = nullptr;
+        newItem->data = data;
+        newItem->priority = priority;
+        return newItem;
     }
 
 public:
-    TPQueue() : head(nullptr), tail(nullptr) {}
+    tpqueue() : head(nullptr), tail(nullptr) {}
 
     void push(const T& data, int priority) {
-        Item* temp = create(data, priority);
-      
+        item* temp = create(data, priority);
         if (!head) {
             head = temp;
             tail = temp;
@@ -41,7 +40,7 @@ public:
             tail->next = temp;
             tail = temp;
         } else {
-            Item* current = head;
+            item* current = head;
             while (current->next->priority >= priority) {
                 current = current->next;
             }
@@ -52,13 +51,13 @@ public:
 
     T pop() {
         if (head) {
-            Item* temp = head->next;
+            item* temp = head->next;
             T data = head->data;
             delete head;
             head = temp;
             return data;
         } else {
-            throw std::out_of_range("Queue is empty");
+            throw std::out_of_range("queue is empty");
         }
     }
 };
