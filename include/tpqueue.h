@@ -12,9 +12,11 @@ class TPQueue {
     SYM data;
     node* next;
   };
+
 private:
     node* head;
     node* tail;
+
 public:
     TPQueue() : head(nullptr), tail(nullptr) {}
 
