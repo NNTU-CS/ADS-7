@@ -17,6 +17,7 @@ class TPQueue {
     };
     Node* head;
     Node* end;
+
  public:
     TPQueue() {
         head = NULL;
@@ -28,7 +29,7 @@ class TPQueue {
         value->next = NULL;
         value->prev = NULL;
         if (head == NULL) {
-            head = end = value; 
+            head = end = value;
         } else if (elm.prior <= head->date.prior) {
             value->next = head;
             head->prev = value;
@@ -48,7 +49,7 @@ class TPQueue {
             value->next = insert->next;
             insert->next->prev = value;
             value->prev = insert->next;
-            insert->next = value;       
+            insert->next = value;
         }
     }
     T pop() {
