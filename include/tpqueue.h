@@ -12,7 +12,6 @@ class TPQueue {
     };
 
 private:
-
     ITEM* head;
     ITEM* tail;
     ITEM* create(const T& data, int priority) {
@@ -24,25 +23,32 @@ private:
     }
 
 public:
-    TPQueue() : head(nullptr), tail(nullptr) {}
-    void push(const T& data, int priority) {
-        ITEM* temp = create(data, priority);
-        if (!head) {
-            head = temp;
-            tail = temp;
-        } else if (priority > head->priority) {
-            temp->next = head;
-            head = temp;
-        } else if (priority <= tail->priority) {
-            tail->next = temp;
-            tail = temp;
-        } else {
+    tpqeue() {
+    head = null;
+    tail = null;
+    }
+    void push(const T& data) {
+        if (head && tail) {
+            if (priority > head->priority) {
+                ITEM* temp = create(data);
+                temp->next = head;
+                head = temp;
+        } else if (tail->priority >= priority) {
+                ITEM* temp = create(data);
+                tail->next = temp;
+                tail = temp;
+            } else {
+            ITEM* temp = create(data);
             ITEM* current = head;
             while (current->next->priority >= priority) {
                 current = current->next;
             }
             temp->next = current->next;
             current->next = temp;
+        }
+        } else {
+            head = create(data);
+            tail = head;
         }
     }
     T pop() {
