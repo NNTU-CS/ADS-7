@@ -7,18 +7,18 @@
 
 template<typename T>
 class tpqueue {
-    struct item {
+    struct ITEM {
         T data;
         int priority;
-        item* next;
+        ITEM* next;
     };
 
 private:
-    item* head;
-    item* tail;
+    ITEM* head;
+    ITEM* tail;
 
-    item* create(const T& data, int priority) {
-        item* newItem = new item;
+    ITEM* create(const T& data, int priority) {
+        ITEM* newItem = new item;
         newItem->next = nullptr;
         newItem->data = data;
         newItem->priority = priority;
@@ -29,7 +29,7 @@ public:
     tpqueue() : head(nullptr), tail(nullptr) {}
 
     void push(const T& data, int priority) {
-        item* temp = create(data, priority);
+        ITEM* temp = create(data, priority);
         if (!head) {
             head = temp;
             tail = temp;
@@ -40,7 +40,7 @@ public:
             tail->next = temp;
             tail = temp;
         } else {
-            item* current = head;
+            ITEM* current = head;
             while (current->next->priority >= priority) {
                 current = current->next;
             }
@@ -51,7 +51,7 @@ public:
 
     T pop() {
         if (head) {
-            item* temp = head->next;
+            ITEM* temp = head->next;
             T data = head->data;
             delete head;
             head = temp;
@@ -66,4 +66,5 @@ struct Sym {
     char ch;
     int prior;
 };
+
 #endif  // INCLUDE_TPQUEUE_H_
