@@ -12,12 +12,10 @@ class TPQueue {
     SYM data;
     node* next;
   };
-  
-  private:
+private:
     node* head;
     node* tail;
-
-  public:
+public:
     TPQueue() : head(nullptr), tail(nullptr) {}
 
     void push(const T& item) {
@@ -52,7 +50,6 @@ class TPQueue {
       if (head == nullptr) {
         throw std::out_of_range("Queue is empty");
       }
-      
       node* temp = head;
       T item = temp->data;
       if (head == tail) {
@@ -61,9 +58,7 @@ class TPQueue {
       } else {
         head = head->next;
       }
-      
       delete temp;
-      
       return item;
     }
     bool empty() const {
