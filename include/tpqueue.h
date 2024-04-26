@@ -8,9 +8,10 @@ struct SYM {
     int prior;
 };
 
-template<typename T>
+template <typename T>
+
 class TPQueue {
-  private:
+ private:
     struct Node {
         SYM data;
         Node* next;
@@ -26,13 +27,14 @@ public:
         if (head == nullptr || sym.prior > head->data.prior) {
             new_node->next = head;
             head = new_node;
-        } else {
-            Node* temp = head;
-            while (temp->next != nullptr && sym.prior <= temp->next->data.prior) {
-                temp = temp->next;
+        }
+        else {
+            Node* t = head;
+            while (t->next != nullptr && sym.prior <= t->next->data.prior) {
+                t = t->next;
             }
-            new_node->next = temp->next;
-            temp->next = new_node;
+            new_node->next = t->next;
+            t->next = new_node;
         }
     }
 
@@ -43,9 +45,9 @@ public:
         }
 
         SYM sym = head->data;
-        Node* temp = head;
+        Node* t = head;
         head = head->next;
-        delete temp;
+        delete t;
 
         return sym;
     }
