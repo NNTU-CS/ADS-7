@@ -4,88 +4,85 @@
 
 template<typename T>
 class TPQueue {
-struct SYM {
-  char ch;
-  int prior;
-};
-struct Node {
-  SYM data;
-  Node* next;
-};
-template<typename T>
-class TPQueue {
-private: 
-  Node* head;
-  Node* tail;
+  struct SYM {
+    char ch;
+    int prior;
+  };
+  struct node {
+    SYM data;
+    node* next;
+  };
+  
+  private:
+    node* head;
+    node* tail;
 
-public: 
-  TPQueue() : head(nullptr), tail(nullptr) {}
-  ~TPQueue() { clear(); }
-  void push(const T& item) {
-    Node* newNode = new Node;
-    newNode->data = item;
-    newNode->next = nullptr;
-    if (isEmpty()) {
-      head = newNode;
-      tail = newNode;
-    } else {
-      Node* current = head;
-      Node* prev = nullptr;
-      while (current != nullptr && current->data.prior >= item.prior) {
-        prev = current;
-        current = current->next;
-      }
-      if (prev == nullptr) {
+  public:
+    TPQueue() : head(nullptr), tail(nullptr) {}
+
+    void push(const T& item) {
+      node* newNode = new node;
+      newNode->data = item;
+      newNode->next = nullptr;
+      
+      if (head == nullptr) {
+        head = newNode;
+        tail = newNode;
+      } else if (newNode->data.prior < head->data.prior) {
         newNode->next = head;
         head = newNode;
+      } else if (newNode->data.prior >= tail->data.prior) {
+        tail->next = newNode;
+        tail = newNode;
       } else {
-        prev->next = newNode;
-        newNode->next = current;
+        node* current = head->next;
+        node* prev = head;
+        
+        while (current != nullptr) {
+          if (newNode->data.prior >= current->data.prior) {
+            prev->next = newNode;
+            newNode->next = current;
+            break;
+          }
+          prev = current;
+          current = current->next;
+        }
       }
     }
-  }
-  T pop() {
-    if (isEmpty()) {
-      throw std::out_of_range("Queue is empty");
+
+    T pop() {
+      if (head == nullptr) {
+        throw std::out_of_range("Queue is empty");
+      }
+      
+      node* temp = head;
+      T item = temp->data;
+      
+      if (head == tail) {
+        head = nullptr;
+        tail = nullptr;
+      } else {
+        head = head->next;
+      }
+      
+      delete temp;
+      
+      return item;
     }
-    T front = head->data;
-    Node* temp = head;
-    head = head->next;
-    delete temp;
-    if (head == nullptr) {
-      tail = nullptr;
+
+    bool empty() const {
+      return head == nullptr;
     }
-    return front;
-  }
-  bool isEmpty() const {
-    return head == nullptr;
-  }
-  void clear() {
-    while (!isEmpty()) {
-      pop();
+
+    ~TPQueue() {
+      while (head != nullptr) {
+        node* temp = head;
+        head = head->next;
+        delete temp;
+      }
     }
-  }
 };
-int main() {
-  TPQueue<SYM> queue;
-  SYM item1 = {'A', 3};
-  queue.push(item1);
-  SYM item2 = {'B', 2};
-  queue.push(item2);
-  SYM item3 = {'C', 1};
-  queue.push(item3);
-  SYM front = queue.pop();
-  std::cout << "Front: " << front.ch << ",
-    Priority: " << front.prior << std::endl;
-  front = queue.pop();
-  std::cout << "Front: " << front.ch << ",
-    Priority: " << front.prior << std::endl;
-  front = queue.pop();
-  std::cout << "Front: " << front.ch << ",
-    Priority: " << front.prior << std::endl;
-  return 0;
-}
-};
+
 struct SYM {
   char ch;
   int prior;
