@@ -27,14 +27,29 @@ class TPQueue {
         tail = nullptr;
     }
     void push(const T& data) {
-        if (tail && head) {
-            tail->next = create(data);
-            tail = tail->next;
+    if (head && tail) {
+        if (data.prior > head->data.prior) {
+            ITEM* temp = create(data);
+            temp->nnext = head;
+            head = temp;
+        } else if (tail->data.prior >= data.prior) {
+            ITEM* temp = create(data);
+            tail->nnext = temp;
+            tail = temp;
         } else {
-            head = create(data);
-            tail = head;
+            ITEM* temp = create(data);
+            ITEM* cur = head;
+            while (cur->nnext->data.prior >= data.prior) {
+                cur = cur->nnext;
+            }
+            temp->nnext = cur->nnext;
+            cur->nnext = temp;
         }
+    } else {
+        head = create(data);
+        tail = head;
     }
+}
     T pop() {
         if (head) {
             ITEM* temp = head->next;
