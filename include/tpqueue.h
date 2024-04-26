@@ -9,6 +9,7 @@ class TPQueue {
         T data;
         ITEM* next;
     };
+
  private:
     //TPQueue::ITEM* create(const T&);
     ITEM* head;
@@ -19,13 +20,14 @@ class TPQueue {
         item->next = nullptr;
         return item;
     }
+
  public:
     TPQueue() {
         head = nullptr;
         tail = nullptr;
     }
     void push(const T& data) {
-        if (tail && head) {  
+        if (tail && head) {
             tail->next = create(data);
             tail = tail->next;
         } else {
