@@ -4,7 +4,6 @@
 
 template<typename T>
 class tpqueue {
-
 private:
     struct node {
         T data;
