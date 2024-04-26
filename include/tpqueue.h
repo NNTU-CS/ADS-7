@@ -16,6 +16,7 @@ class TPQueue {
     SYM* rear;
     SYM* front;
     int size;
+
  public:
     TPQueue() : size(0), rear(nullptr), front(nullptr) {}
     void push(SYM n) {
