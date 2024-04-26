@@ -2,6 +2,7 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 #include <string>
+#include <iostream>
 
 template<typename T>
 class TPQueue {
@@ -9,7 +10,7 @@ class TPQueue {
         T data;
         int priority;
         ITEM* next;
-    };
+    }
 
 private:
     ITEM* head;
@@ -62,9 +63,9 @@ public:
             throw std::out_of_range("queue is empty");
         }
     }
-};
+}
 
-struct Sym {
+struct SYM {
     char ch;
     int prior;
 };
