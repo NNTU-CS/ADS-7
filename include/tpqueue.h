@@ -24,7 +24,6 @@ class TPQueue {
       node* newNode = new node;
       newNode->data = item;
       newNode->next = nullptr;
-      
       if (head == nullptr) {
         head = newNode;
         tail = newNode;
@@ -37,7 +36,6 @@ class TPQueue {
       } else {
         node* current = head->next;
         node* prev = head;
-        
         while (current != nullptr) {
           if (newNode->data.prior >= current->data.prior) {
             prev->next = newNode;
@@ -57,7 +55,6 @@ class TPQueue {
       
       node* temp = head;
       T item = temp->data;
-      
       if (head == tail) {
         head = nullptr;
         tail = nullptr;
@@ -69,7 +66,6 @@ class TPQueue {
       
       return item;
     }
-
     bool empty() const {
       return head == nullptr;
     }
