@@ -14,10 +14,11 @@ struct Node {
 };
 template<typename T>
 class TPQueue {
-private:
+private: 
   Node* head;
   Node* tail;
-public:
+
+public: 
   TPQueue() : head(nullptr), tail(nullptr) {}
   ~TPQueue() { clear(); }
   void push(const T& item) {
@@ -74,11 +75,14 @@ int main() {
   SYM item3 = {'C', 1};
   queue.push(item3);
   SYM front = queue.pop();
-  std::cout << "Front: " << front.ch << ", Priority: " << front.prior << std::endl;
+  std::cout << "Front: " << front.ch << ",
+    Priority: " << front.prior << std::endl;
   front = queue.pop();
-  std::cout << "Front: " << front.ch << ", Priority: " << front.prior << std::endl;
+  std::cout << "Front: " << front.ch << ",
+    Priority: " << front.prior << std::endl;
   front = queue.pop();
-  std::cout << "Front: " << front.ch << ", Priority: " << front.prior << std::endl;
+  std::cout << "Front: " << front.ch << ",
+    Priority: " << front.prior << std::endl;
   return 0;
 }
 };
