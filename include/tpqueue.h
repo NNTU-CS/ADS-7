@@ -17,7 +17,6 @@ class TPQueue {
     };
     Node* head;
     Node* end;
- 
  public:
     TPQueue() {
         head = NULL;
