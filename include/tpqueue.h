@@ -10,7 +10,7 @@ class TPQueue {
         T data;
         int priority;
         ITEM* next;
-    }
+    };
 
 private:
     ITEM* head;
