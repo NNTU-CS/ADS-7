@@ -25,8 +25,7 @@ public:
         if (head == nullptr || sym.prior > head->data.prior) {
             new_node->next = head;
             head = new_node;
-        }
-        else {
+        } else {
             Node* temp = head;
             while (temp->next != nullptr && sym.prior <= temp->next->data.prior) {
                 temp = temp->next;
@@ -38,7 +37,7 @@ public:
 
     SYM pop() {
         if (head == nullptr) {
-            std::cerr << "Queue is empty" << std::endl;
+            std::cout << "Queue is empty" << std::endl;
             return SYM{ '0', 0 };
         }
 
