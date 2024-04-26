@@ -18,7 +18,7 @@ class TPQueue {
     };
     Node* head;
 
-public:
+ public:
     TPQueue() : head(nullptr) {}
 
     void push(SYM sym) {
@@ -27,8 +27,7 @@ public:
         if (head == nullptr || sym.prior > head->data.prior) {
             new_node->next = head;
             head = new_node;
-        }
-        else {
+        } else {
             Node* t = head;
             while (t->next != nullptr && sym.prior <= t->next->data.prior) {
                 t = t->next;
