@@ -10,13 +10,14 @@ struct SYM {
 template<typename T>
 
 class TPQueue {
-private:
+ private:
     struct node {
         SYM data;
         node* next;
     };
     node* head;
-public:
+
+ public:
     TPQueue() : head(nullptr) {}
 
     void push(SYM new_sym) {
@@ -26,7 +27,8 @@ public:
             head = new_node;
         } else {
             node* tmp = head;
-            while (tmp->next != nullptr && new_sym.prior <= tmp->next->data.prior) {
+            while (tmp->next != nullptr && 
+                new_sym.prior <= tmp->next->data.prior) {
                 tmp = tmp->next;
             }
             new_node->next = tmp->next;
@@ -39,9 +41,9 @@ public:
         }
         SYM last = head->data;
         node* tmp = head;
-        head = head->data;
-        delete t;
+        head = head->next;
+        delete tmp;
         return last;
-    } 
-}
+    }
+};
 #endif  // INCLUDE_TPQUEUE_H_
