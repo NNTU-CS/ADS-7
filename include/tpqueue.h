@@ -6,22 +6,22 @@
 
 template<typename T>
 class TPQueue {
-private:
-struct myItem {
-    T data;
-    myItem* next;
-};
-TPQueue::myItem *create(const T&);
-myItem *head;
-myItem *tail;
-public:
-TPQueue():head(nullptr), tail(nullptr) {}
+ private:
+    struct myItem {
+        T data;
+        myItem* next;
+    };
+    TPQueue::myItem *create(const T&);
+    myItem *head;
+    myItem *tail;
+ public:
+    TPQueue():head(nullptr), tail(nullptr) {}
 
-~TPQueue();
+    ~TPQueue();
 
-void push(const T&);
+    void push(const T&);
 
-T pop();
+    T pop();
 };
 
 
