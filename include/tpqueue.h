@@ -46,13 +46,13 @@ void push(const T& data) {
             current->next = temp;
         }
     } else {
-            head = create(data);
-            tail = head;
+        head = create(data);
+        tail = head;
     }
 }
 T pop() {
         if (head) {
-            ITEM* temp = head->next;
+            ITEM* temp = head->next2;
             T data = head->data;
             delete head;
             head = temp;
