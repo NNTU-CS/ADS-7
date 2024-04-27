@@ -5,7 +5,9 @@
 struct SYM {
   char ch;
   int prior;
-}; 
+  SYM* prev;
+  SYM* next;
+};
 
 template<typename T = SYM>
 class TPQueue {
