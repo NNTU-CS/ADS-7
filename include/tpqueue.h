@@ -41,9 +41,9 @@ typename TPQueue<T>::myItem*TPQueue<T>::create(const T &data) {
 template<typename T>
 T TPQueue<T>::pop() {
     myItem *temp1 = headItem->next;
-    T data = headItem->data;
-    delete headItem;
-    headItem = temp1;
+    T data = tailItem->data;
+    delete tailItem;
+    tailItem = temp1;
     return data;
 }
 
