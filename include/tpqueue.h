@@ -12,10 +12,10 @@ class TPQueue {
         myItem* next;
     };
     TPQueue::myItem *create(const T&);
-    myItem *head;
-    myItem *tail;
+    myItem *headItem;
+    myItem *tailItem;
  public:
-    TPQueue():head(nullptr), tail(nullptr) {}
+    TPQueue():headItem(nullptr), tailItem(nullptr) {}
 
     ~TPQueue();
 
@@ -26,7 +26,7 @@ class TPQueue {
 
 template<typename T>
 TPQueue<T>::~TPQueue() {
-    while (head)
+    while (headItem)
         pop();
 }
 
@@ -40,42 +40,42 @@ typename TPQueue<T>::myItem*TPQueue<T>::create(const T &data) {
 
 template<typename T>
 T TPQueue<T>::pop() {
-    myItem *temp = head->next;
-    T data = head->data;
-    delete head;
-    head = temp;
+    myItem *temp1 = headItem->next;
+    T data = headItem->data;
+    delete headItem;
+    headItem = temp1;
     return data;
 }
 
 template<typename T>
 void TPQueue<T>::push(const T &data) {
-    if (head == nullptr) {
-        head = create(data);
-        tail = head;
-    } else if (head == tail) {
-        if (data.prior > tail->data.prior) {
-            tail->next = create(data);
-            tail = tail->next;
+    if (headItem == nullptr) {
+        headItem = create(data);
+        tailItem = headItem;
+    } else if (headItem == tailItem) {
+        if (data.prior > tailItem->data.prior) {
+            tailItem->next = create(data);
+            tailItem = tailItem->next;
         } else {
-            myItem *item1 = head;
-            head->next = item1;
-            head = create(data);
+            myItem *item1 = headItem;
+            headItem = create(data);
+            headItem->next = item1;
         }
     } else {
-        myItem *temp = head;
-        if (data.prior >= tail->data.prior) {
-            tail->next = create(data);
-            tail = tail->next;
-        } else if (data.prior < tail->data.prior) {
-            myItem *item2 = head;
-            head->next = item2;
-            head = create(data);
+        myItem *temp = headItem;
+        if (data.prior >= tailItem->data.prior) {
+            tailItem->next = create(data);
+            tailItem = tailItem->next;
+        } else if (data.prior < headItem->data.prior) {
+            myItem *item2 = headItem;
+            headItem = create(data);
+            headItem->next = item2;
         } else {
-            while (temp->next && data.prior > temp->next->data.prior)
+            while (data.prior > temp->next->data.prior)
                 temp = temp->next;
-            myItem *ins = create(data);
-            ins->next = temp->next;
-            temp->next = ins;
+            myItem *ins = temp->next;
+            ins->next = create(data);
+            temp->next->next = ins;
         }
     }
 }
