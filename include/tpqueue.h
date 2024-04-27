@@ -27,17 +27,11 @@ class TPQueue {
 
 template<typename T>
 T TPQueue<T>::pop() {
-    if (head) {
-        myItem *temp = head->next;
-        T data = head->data;
-        delete head;
-        head = temp;
-        if (!head)
-            tail = nullptr;
-        return data;
-    } else {
-        throw std::string("Empty!");
-    }
+    myItem *temp = head->next;
+    T data = head->data;
+    delete head;
+    head = temp;
+    return data;
 }
 
 template<typename T>
