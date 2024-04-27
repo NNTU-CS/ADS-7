@@ -52,7 +52,7 @@ void push(const T& data) {
 }
     T pop() {
         if (head) {
-            ITEM* temp = head->next2;
+            ITEM* temp = head->next;
             T data = head->data;
             delete head;
             head = temp;
