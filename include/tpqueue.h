@@ -27,7 +27,7 @@ class TPQueue {
             head = new_node;
         } else {
             node* tmp = head;
-            while (tmp->next != nullptr && 
+            while (tmp->next != nullptr &&
                 new_sym.prior <= tmp->next->data.prior) {
                 tmp = tmp->next;
             }
