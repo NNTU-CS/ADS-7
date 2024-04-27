@@ -6,7 +6,7 @@
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     struct SOR {
         T data;
         SOR *next;
@@ -17,7 +17,7 @@ private:
     SOR *head;
     SOR *tail;
 
-public:
+ public:
     TPQueue() : head(nullptr), tail(nullptr) {}
 
     ~TPQueue();
