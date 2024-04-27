@@ -11,18 +11,18 @@ class TPQueue {
         ITEM* next;
     };
 
-private:
+ private:
     ITEM* head;
     ITEM* tail;
     ITEM* create(const T& data) {
         ITEM* item = new ITEM;
-        item->next = nullptr;
         item->data = data;
+        item->next = nullptr;
         return item;
     }
 
-public:
-    TPQeue() {
+ public:
+    TPQueue() {
         head = nullptr;
         tail = nullptr;
     }
@@ -50,7 +50,7 @@ void push(const T& data) {
         tail = head;
     }
 }
-T pop() {
+    T pop() {
         if (head) {
             ITEM* temp = head->next2;
             T data = head->data;
@@ -64,8 +64,8 @@ T pop() {
 };
 
 struct SYM {
-    char ch;
-    int priority;
+  char ch;
+  int prior;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
