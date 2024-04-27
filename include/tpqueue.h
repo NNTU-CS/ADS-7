@@ -83,14 +83,6 @@ class TPQueue {
         }
         throw std::string("Empty queue");
     }
-    void print() const {
-        ITEM* temp = head;
-        while (temp) {
-            std::cout << temp->data << " ";
-            temp = temp->next;
-        }
-        std::cout << std::endl;
-    }
 };
 
 struct SYM {
