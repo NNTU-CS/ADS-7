@@ -24,6 +24,19 @@ class TPQueue {
     T pop();
 };
 
+template<typename T>
+TPQueue<T>::~TPQueue() {
+    while (head)
+        pop();
+}
+
+template<typename T>
+typename TPQueue<T>::myItem*TPQueue<T>::create(const T &data) {
+    myItem *item = new myItem;
+    item->data = data;
+    item->next = nullptr;
+    return item;
+}
 
 template<typename T>
 T TPQueue<T>::pop() {
@@ -44,19 +57,19 @@ void TPQueue<T>::push(const T &data) {
             tail->next = create(data);
             tail = tail->next;
         } else {
-            myItem *temp = head;
-            temp->next = head;
-            head = temp;
+            myItem *item1 = head;
+            head->next = item1;
+            head = create(data);
         }
     } else {
         myItem *temp = head;
-        if (data.prior > tail->data.prior) {
+        if (data.prior >= head->data.prior) {
             tail->next = create(data);
             tail = tail->next;
         } else if (data.prior < head->data.prior) {
-            myItem *temp1 = head;
-            temp1->next = head;
-            head = temp1;
+            myItem *item2 = head;
+            head->next = item2;
+            head = create(data);
         } else {
             while (temp->next && data.prior > temp->next->data.prior)
                 temp = temp->next;
@@ -65,20 +78,6 @@ void TPQueue<T>::push(const T &data) {
             temp->next = ins;
         }
     }
-}
-
-template<typename T>
-TPQueue<T>::~TPQueue() {
-    while (head)
-        pop();
-}
-
-template<typename T>
-typename TPQueue<T>::myItem*TPQueue<T>::create(const T &data) {
-    myItem *item = new myItem;
-    item->data = data;
-    item->next = nullptr;
-    return item;
 }
 
 struct SYM {
