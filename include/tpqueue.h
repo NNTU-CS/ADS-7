@@ -40,10 +40,10 @@ typename TPQueue<T>::myItem*TPQueue<T>::create(const T &data) {
 
 template<typename T>
 T TPQueue<T>::pop() {
-    myItem *temp1 = tailItem->next;
-    T data = tailItem->data;
-    delete tailItem;
-    tailItem = temp1;
+    myItem *temp1 = headItem->next;
+    T data = headItem->data;
+    delete headItem;
+    headItem = temp1;
     return data;
 }
 
@@ -53,7 +53,7 @@ void TPQueue<T>::push(const T &data) {
         headItem = create(data);
         tailItem = headItem;
     } else if (headItem == tailItem) {
-        if (data.prior > tailItem->data.prior) {
+        if (data.prior < tailItem->data.prior) {
             tailItem->next = create(data);
             tailItem = tailItem->next;
         } else {
@@ -63,15 +63,15 @@ void TPQueue<T>::push(const T &data) {
         }
     } else {
         myItem *temp = headItem;
-        if (data.prior >= tailItem->data.prior) {
+        if (data.prior < tailItem->data.prior) {
             tailItem->next = create(data);
             tailItem = tailItem->next;
-        } else if (data.prior < headItem->data.prior) {
+        } else if (data.prior > headItem->data.prior) {
             myItem *item2 = headItem;
             headItem = create(data);
             headItem->next = item2;
         } else {
-            while (data.prior > temp->next->data.prior)
+            while (data.prior < temp->next->data.prior)
                 temp = temp->next;
             myItem *ins = temp->next;
             ins->next = create(data);
