@@ -6,6 +6,7 @@ struct SYM {
   char ch;
   int prior;
 };
+
 template<typename T>
 class TPQueue {
  private:
