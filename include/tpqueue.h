@@ -15,34 +15,28 @@ private:
     ITEM* head;
     ITEM* tail;
     ITEM* create(const T& data) {
-        ITEM* Item = new ITEM;
-        newItem->next = nullptr;
-        newItem->data = data;
+        ITEM* item = new ITEM;
+        item->next = nullptr;
+        item->data = data;
         return item;
     }
 
 public:
     TPQeue() {
-    head = nullptr;
-    tail = nullptr;
+        head = nullptr;
+        tail = nullptr;
     }
-    void push(const T& data) {
-        if (head && tail) {
-            if (data.priority > head->data.priority) {
-                ITEM* temp = create(data);
-                temp->next = head;
-                head = temp;
-        } else if (tail->data.priority >= data.priority) {
-                ITEM* temp = create(data);
-                tail->next = temp;
-                tail = temp;
-            } else {
+void push(const T& data) {
+    if (head && tail) {
+        if (data.priority > head->data.priority) {
             ITEM* temp = create(data);
-            ITEM* current = head;
-            while (current->next->data.priority >= data.priority) {
-                current = current->next;
-            }
-                } else {
+            temp->next = head;
+            head = temp;
+        } else if (tail->data.priority >= data.priority) {
+            ITEM* temp = create(data);
+            tail->next = temp;
+            tail = temp;
+        } else {
             ITEM* temp = create(data);
             ITEM* current = head;
             while (current->next->data.priority >= data.priority) {
@@ -50,13 +44,13 @@ public:
             }
             temp->next = current->next;
             current->next = temp;
-            }
-        } else {
+        }
+    } else {
             head = create(data);
             tail = head;
-        }
     }
-    T pop() {
+}
+T pop() {
         if (head) {
             ITEM* temp = head->next;
             T data = head->data;
@@ -71,7 +65,7 @@ public:
 
 struct SYM {
     char ch;
-    int prior;
+    int priority;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
