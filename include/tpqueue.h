@@ -2,6 +2,11 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+struct SYM {
+  char ch;
+  int prior;
+}; 
+
 template<typename T = SYM>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
@@ -9,6 +14,7 @@ class TPQueue {
     SYM* st;
     SYM* end;
     int zero;
+
  public:
     TPQueue() : zero(0), st(nullptr), end(nullptr) {}
     void push(SYM temp) {
@@ -42,8 +48,7 @@ class TPQueue {
                 st = q;
                 zero++;
                 return;
-            }
-            else {
+            } else {
                 SYM* t = st;
                 while (t->next && temp.prior <= t->prior)
                     t = t->next;
@@ -74,9 +79,6 @@ class TPQueue {
     }
 };
 
-struct SYM {
-  char ch;
-  int prior;
-};
+
 
 #endif  // INCLUDE_TPQUEUE_H_
