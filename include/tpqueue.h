@@ -14,8 +14,8 @@ class TPQueue {
     TPQueue::myItem *create(const T&);
     myItem *headItem;
     myItem *tailItem;
- public:
 
+ public:
     TPQueue():headItem(nullptr), tailItem(nullptr) {}
 
     ~TPQueue();
@@ -38,7 +38,6 @@ class TPQueue {
             headItem = tailItem = nullptr;
         }
     }
-
 };
 
 template<typename T>
