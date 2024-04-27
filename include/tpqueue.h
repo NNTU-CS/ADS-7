@@ -6,6 +6,7 @@
 
 template<typename T>
 class TPQueue {
+
  private:
     int first;
     int last;
@@ -48,6 +49,7 @@ class TPQueue {
     int getSize() {
         return (last - first);
     }
+
  private:
     ITEM* create(const T& data) {
         ITEM* item = new ITEM;
