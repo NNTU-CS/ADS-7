@@ -6,7 +6,7 @@
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     struct VAL {
         T data;
         VAL *next;
@@ -17,7 +17,7 @@ private:
     VAL *head;
     VAL *tail;
 
-public:
+ public:
     TPQueue() : head(nullptr), tail(nullptr) {}
 
     ~TPQueue();
