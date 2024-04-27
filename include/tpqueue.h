@@ -65,7 +65,7 @@ void push(const T& data) {
 
 struct SYM {
   char ch;
-  int prior;
+  int priority;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
