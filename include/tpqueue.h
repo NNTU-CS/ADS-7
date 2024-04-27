@@ -22,6 +22,18 @@ class TPQueue {
     void push(const T&);
 
     T pop();
+
+    void rmTail() {
+        myItem *templ = headItem;
+        if (headItem != tailItem) {
+            while (templ->next != tailItem) {
+                templ = templ->next;
+            }
+        } else {
+            delete tailItem;
+            headItem = tailItem = nullptr;
+        }
+    }
 };
 
 template<typename T>
@@ -40,11 +52,9 @@ typename TPQueue<T>::myItem*TPQueue<T>::create(const T &data) {
 
 template<typename T>
 T TPQueue<T>::pop() {
-    myItem *temp1 = headItem->next;
-    T data = tailItem->data;
-    delete tailItem;
-    tailItem = temp1;
-    return data;
+    T temp4 = tailItem->data;
+    rmTail();
+    return temp4;
 }
 
 template<typename T>
