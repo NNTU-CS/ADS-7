@@ -2,6 +2,8 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+#include <stdexcept>
+
 struct SYM {
   char ch;
   int prior;
@@ -18,15 +20,22 @@ class TPQueue {
 
  public:
   TPQueue() : head(nullptr) {}
+  ~TPQueue() {
+    while (head) {
+      Node* temp = head;
+      head = head->next;
+      delete temp;
+    }
+  }
 
-  void push(const T& data) {
-    Node* newNode = new Node{data, nullptr};
-    if (!head || head->data.prior < data.prior) {
+  void push(const T& value) {
+    Node* newNode = new Node{value, nullptr};
+    if (!head || head->data.prior < value.prior) {
       newNode->next = head;
       head = newNode;
     } else {
       Node* current = head;
-      while (current->next && current->next->data.prior >= data.prior) {
+      while (current->next && current->next->data.prior >= value.prior) {
         current = current->next;
       }
       newNode->next = current->next;
@@ -43,13 +52,6 @@ class TPQueue {
     head = head->next;
     delete temp;
     return data;
-  }
-  ~TPQueue() {
-    while (head) {
-      Node* temp = head;
-      head = head->next;
-      delete temp;
-    }
   }
 };
 
