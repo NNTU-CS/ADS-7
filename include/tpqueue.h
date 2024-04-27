@@ -31,10 +31,10 @@ class TPQueue {
 
 template<typename T>
 typename TPQueue<T>::SOR *TPQueue<T>::create(const T &data) {
-    SOR *pVal = new SOR;
-    pVal->data = data;
-    pVal->next = nullptr;
-    return pVal;
+    SOR *pSor = new SOR;
+    pSor->data = data;
+    pSor->next = nullptr;
+    return pSor;
 }
 
 template<typename T>
