@@ -27,12 +27,14 @@ class TPQueue {
         Newlist->sym = newsym;
         Newlist->next = nullptr;
 
-        if (base == nullptr || newsym.prior > base->sym.prior) {
+        if (base == nullptr || \
+            newsym.prior > base->sym.prior) {
             Newlist->next = base;
             base = Newlist;
         } else {
             Qlist* tmp = base;
-            while (tmp->next != nullptr && tmp->next->sym.prior > newsym.prior) {
+            while (tmp->next != nullptr && \
+                tmp->next->sym.prior > newsym.prior) {
                 tmp = tmp->next;
             }
             Newlist->next = tmp->next;
