@@ -19,13 +19,13 @@ class TPQueue {
 
  public:
     TPQueue() : counter(0), beg(nullptr), end(nullptr) {}
-    void push_poz(SYM j) {
+    void push(SYM j) {
         if (!counter) {
             beg = new SYM;
             beg->ch = j.ch;
             beg->prior = j.prior;
             beg->sled = beg->pred = nullptr;
-            end = head;
+            end = beg;
             counter++;
             return;
         } else {
@@ -43,7 +43,7 @@ class TPQueue {
             } else if (j.prior > beg->prior) {
                 SYM* e = new SYM;
                 e->ch = j.ch;
-                e->prior = a.prior;
+                e->prior = j.prior;
                 e->pred = e->sled = nullptr;
                 e->sled = beg;
                 beg->pred = e;
@@ -67,7 +67,7 @@ class TPQueue {
         }
     }
 
-    SYM pop_poz() {
+    SYM pop() {
         if (!counter) {
             SYM a{ '0', -2 };
             return a;
