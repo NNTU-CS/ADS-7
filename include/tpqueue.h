@@ -1,7 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-
+#include <string>
 template<typename T>
 class TPQueue {
  private:
@@ -34,7 +34,8 @@ newNode->value = val;
         return;
     }
     Node* temp = head;
-    while (temp->next && val.prior <= temp->next->value.prior) temp = temp->next;
+    while (temp->next && val.prior <= temp->next->value.prior) 
+        temp = temp->next;
     newNode->next = temp->next;
     temp->next = newNode;
 }
@@ -49,7 +50,7 @@ T TPQueue<T>::pop() {
     head = head->next;
     delete temp;
     return data;
-};
+}
 
 struct SYM {
   char ch;
