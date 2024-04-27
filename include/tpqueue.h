@@ -34,7 +34,7 @@ newNode->value = val;
         return;
     }
     Node* temp = head;
-    while (temp->next && val.prior <= temp->next->value.prior) 
+    while (temp->next && val.prior <= temp->next->value.prior)
         temp = temp->next;
     newNode->next = temp->next;
     temp->next = newNode;
