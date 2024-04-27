@@ -75,9 +75,9 @@ void TPQueue<T>::push(const T &data) {
             headItem->next = temp;
         } else {
             while (data.prior > temp->next->data.prior)
-                temp = temp->next->next;
+                temp = temp->next;
             myItem *ins = temp->next;
-            ins->next = create(data);
+            temp->next = create(data);
             temp->next->next = ins;
         }
     }
