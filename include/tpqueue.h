@@ -36,18 +36,14 @@ class TPQueue {
 
   T pop() {
     if (!head) {
-      std::cerr << "Queue is empty!" << std::endl;
-      return T();
+      throw std::out_of_range("Queue is empty!");
     }
-    T data = head->data;
+    T data = temp->data;
     Node* temp = head;
     head = head->next;
     delete temp;
     return data;
   }
-
-  bool isEmpty() const { return head == nullptr; }
-
   ~TPQueue() {
     while (head) {
       Node* temp = head;
