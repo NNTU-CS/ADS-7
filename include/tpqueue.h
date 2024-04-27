@@ -50,8 +50,8 @@ T TPQueue<T>::pop() {
 template<typename T>
 void TPQueue<T>::push(const T &data) {
     if (headItem == nullptr) {
-        headItem = create(data);
-        tailItem = headItem;
+        tailItem = create(data);
+        headItem = tailItem;
     } else if (headItem == tailItem) {
         if (tailItem->data.prior == data.prior) {
             tailItem->next = create(data);
