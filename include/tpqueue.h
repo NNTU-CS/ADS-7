@@ -15,6 +15,7 @@ class TPQueue {
     myItem *headItem;
     myItem *tailItem;
  public:
+
     TPQueue():headItem(nullptr), tailItem(nullptr) {}
 
     ~TPQueue();
@@ -29,11 +30,15 @@ class TPQueue {
             while (templ->next != tailItem) {
                 templ = templ->next;
             }
+            templ->next = nullptr;
+            delete tailItem;
+            tailItem = templ;
         } else {
             delete tailItem;
             headItem = tailItem = nullptr;
         }
     }
+
 };
 
 template<typename T>
