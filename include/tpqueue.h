@@ -53,13 +53,9 @@ void TPQueue<T>::push(const T &data) {
         tailItem = create(data);
         headItem = tailItem;
     } else if (headItem == tailItem) {
-        if (tailItem->data.prior == data.prior) {
+        if (data.prior > tailItem->data.prior) {
             tailItem->next = create(data);
             tailItem = tailItem->next;
-        } else if (data.prior > headItem->data.prior) {
-            myItem *item2 = headItem;
-            headItem = create(data);
-            headItem->next = item2;
         } else {
             myItem *item1 = headItem;
             headItem = create(data);
@@ -67,7 +63,7 @@ void TPQueue<T>::push(const T &data) {
         }
     } else {
         myItem *temp = headItem;
-        if (data.prior < tailItem->data.prior) {
+        if (data.prior > tailItem->data.prior) {
             tailItem->next = create(data);
             tailItem = tailItem->next;
         } else if (data.prior < headItem->data.prior) {
@@ -75,8 +71,9 @@ void TPQueue<T>::push(const T &data) {
             headItem = create(data);
             headItem->next = item3;
         } else {
-            while (data.prior > temp->next->data.prior)
+            while (data.prior > temp->next->data.prior) {
                 temp = temp->next;
+            }
             myItem *ins = temp->next;
             temp->next = create(data);
             temp->next->next = ins;
