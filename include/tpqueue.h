@@ -16,7 +16,7 @@ class TPQueue {
     T data;
     Node* next;
   };
-  Node* head;
+    Node* head;
 
  public:
   TPQueue() : head(nullptr) {}
