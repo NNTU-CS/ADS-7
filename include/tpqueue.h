@@ -8,19 +8,16 @@ template<typename T>
 class TPQueue {
 
  private:
-    int first;
-    int last;
     struct ITEM {
         T data;
         ITEM* next;
     };
     ITEM* head;
     ITEM* tail;
+
  public:
-    TPQueue() :first(0), last(0), head(nullptr), tail(nullptr) {}
+    TPQueue() :head(nullptr), tail(nullptr) {}
     void push(T x) {
-        if (last - first >= size)
-            throw std::string("Full!");
         ITEM* item = head;
         ITEM* prev = nullptr;
         while (item) {
@@ -40,14 +37,9 @@ class TPQueue {
                 addHead(x);
             }
         }
-        last++;
     }
     T pop() {
-        first++;
         return rmHead();
-    }
-    int getSize() {
-        return (last - first);
     }
 
  private:
@@ -91,6 +83,14 @@ class TPQueue {
             return data;
         }
         throw std::string("Empty queue");
+    }
+    void print() const {
+        ITEM* temp = head;
+        while (temp) {
+            std::cout << temp->data << " ";
+            temp = temp->next;
+        }
+        std::cout << std::endl;
     }
 };
 
