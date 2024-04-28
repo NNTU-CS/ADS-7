@@ -4,7 +4,8 @@
 #include <cstdint>
 
 template<typename T>
-class TPQueue { private:
+class TPQueue {
+ private:
     struct VAL {
         T data;
         VAL *next;
@@ -15,7 +16,7 @@ class TPQueue { private:
     VAL *head;
     VAL *tail;
 
-public:
+ public:
     TPQueue() : head(nullptr), tail(nullptr) {}
 
     ~TPQueue();
