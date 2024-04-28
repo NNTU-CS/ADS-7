@@ -4,11 +4,11 @@
 #include <string>
 
 template<typename T>
-  class TPQueue {
-  struct ITEM {
-    T data;
-    ITEM* next;
-  };
+class TPQueue {
+struct ITEM {
+  T data;
+  ITEM* next;
+};
 
   private:
     ITEM* head;
