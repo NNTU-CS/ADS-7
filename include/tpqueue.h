@@ -13,7 +13,7 @@ template <typename T>
 class TPQueue {
  private:
     struct list {
-        T item;
+        T name;
         list *next;
     };
   list* head;
