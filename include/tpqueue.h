@@ -28,14 +28,12 @@ class TPQueue {
       count++;
       return;
     }
-    
     if (head->data.prior < pr) {
       temp->next = head;
       head = temp;
-      count++
+      count++;
       return;
     }
-    
     Node* end = head;
     for (int k = count-1; k > 0; k--)
       if (end->next != nullptr && end->next->data.prior >= pr)
