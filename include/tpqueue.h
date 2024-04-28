@@ -11,8 +11,8 @@ struct SYM {
 
 template <typename T>
 class TPQueue {
-private:
-  struct list {
+ private:
+    struct list {
     T name;
     list* next;
   };
@@ -26,8 +26,8 @@ private:
     return t;
   }
 
-public:
-  TPQueue() : head(nullptr), tail(nullptr) {};
+ public:
+    TPQueue() : head(nullptr), tail(nullptr) {}
   void push(const T& c) {
     list* t = create(c);
     if (head == nullptr) {
