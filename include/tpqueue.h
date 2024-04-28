@@ -8,8 +8,8 @@ template<typename T>
 class TPQueue {
  private:
     struct Node {
-        Node* next;
         T data;
+        Node* next;
     };
 
     Node* head;
@@ -47,8 +47,7 @@ class TPQueue {
         }
 
         Node* temp = head;
-        T data;
-        data = temp->data;
+        T data = temp->data;
         head = head->next;
         delete temp;
         return data;
@@ -56,7 +55,7 @@ class TPQueue {
 };
 
 struct SYM {
-char ch;
+  char ch;
   int prior;
 };
 #endif  // INCLUDE_TPQUEUE_H_
