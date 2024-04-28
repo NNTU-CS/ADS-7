@@ -4,6 +4,11 @@
 
 #include <string>
 
+struct SYM {
+  char ch;
+  int prior;
+};
+
 template <typename T>
 class TPQueue {
  private:
@@ -50,12 +55,9 @@ class TPQueue {
     delete t;
     return res;
   }
-  bool isEmpty() const { return head == nullptr; }
-};
-
-struct SYM {
-  char ch;
-  int prior;
+  bool isEmpty() const { 
+      return head == nullptr; 
+  }
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
