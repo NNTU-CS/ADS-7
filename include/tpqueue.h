@@ -38,7 +38,7 @@ class TPQueue {
         newV->next = head;
         head = newV;
       } else {
-        Item temp = head;
+        Item* temp = head;
         while (temp->next && val.prior <= temp->next->prior) {
           temp = temp->next;
         }
