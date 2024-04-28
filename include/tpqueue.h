@@ -1,5 +1,8 @@
 // Copyright 2022 NNTU-CS
-#include <iostream>
+#ifndef INCLUDE_TPQUEUE_H_
+#define INCLUDE_TPQUEUE_H_
+
+#include <stdexcept>
 
 // Структура для элемента очереди
 struct SYM {
@@ -71,3 +74,5 @@ public:
         return head == nullptr;
     }
 };
+
+    #endif  // INCLUDE_TPQUEUE_H_
