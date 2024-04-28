@@ -13,9 +13,9 @@ template <typename T>
 class TPQueue {
  private:
     struct list {
-    T name;
-    list* next;
-  };
+        T item;
+        list *next;
+    };
   list* head;
   list* tail;
 
