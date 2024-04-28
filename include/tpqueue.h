@@ -2,60 +2,52 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-#include <iostream>
-
-struct Node {
-    int data;
-    int priority;
-    Node* next;
-};
-
+template<typename T>
 class TPQueue {
  private:
-    Node* head;
+  struct Item {
+    T data;
+    Item* dal;
+  };
+  Item* start;
+  Item* end;
+  int c = 0;
 
  public:
-    TPQueue() : head(nullptr) {}
-
-    void enqueue(int data, int priority) {
-        Node* newNode = new Node;
-        newNode->data = data;
-        newNode->priority = priority;
-
-        if (head == nullptr || priority > head->priority) {
-            newNode->next = head;
-            head = newNode;
-        } else {
-            Node* current = head;
-            while (current->next != nullptr&&current->next->priority>=priority) {
-                current = current->next;
-            }
-            newNode->next = current->next;
-            current->next = newNode;
-        }
+  TPQueue() : start(nullptr), end(nullptr) {}
+  void push(const T& value) {
+    int pr = value.prior;
+    Item* temp = new Item;
+    temp->data = value;
+    temp->dal = nullptr;
+    if (start == nullptr) {
+      start = temp;
+      end = temp;
+      c++;
+      return;
     }
-
-    int dequeue() {
-        if (head == nullptr) {
-            std::cerr << "Queue is empty" << std::endl;
-            return -1;
-        }
-
-        int data = head->data;
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-
-        return data;
+    if (start->data.prior < pr) {
+      temp->dal = start;
+      start = temp;
+      c++;
+      return;
     }
-
-    void printQueue() {
-        Node* current = head;
-        while (current != nullptr) {
-            std::cout << current->data << current->priority << std::endl;
-            current = current->next;
-        }
-    }
+    Item* tail = start;
+    for (int i = c-1; i > 0; i--)
+      if (tail->dal != nullptr && tail->dal->data.prior >= pr)
+        tail = tail->dal;
+    temp->dal = tail->dal;
+    tail->dal = temp;
+    if (temp->dal == nullptr)
+      end = temp;
+  }
+  const T pop() {
+    Item* temp = start;
+    T result = temp->data;
+    start = start->dal;
+    delete temp;
+    return result;
+  }
 };
 
 struct SYM {
