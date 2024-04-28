@@ -20,7 +20,7 @@ class TPQueue {
     void push(const T &);
     T pop();
 
-    void rmTail();
+    void removeTail();
 };
 
 template<typename T>
@@ -66,7 +66,7 @@ void TPQueue<T>::push(const T &data) {
 template<typename T>
 T TPQueue<T>::pop() {
     T temp = tail->data;
-    rmTail();
+    removeTail();
     return temp;
 }
 template<typename T>
@@ -76,7 +76,7 @@ TPQueue<T>::~TPQueue() {
     }
 }
 template<typename T>
-void TPQueue<T>::rmTail() {
+void TPQueue<T>::removeTail() {
     PAT *temp = head;
     if (head == tail) {
         delete tail;
