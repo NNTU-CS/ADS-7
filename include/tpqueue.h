@@ -2,29 +2,34 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+#include <cstdint>
+
 template<typename T>
 class TPQueue {
 private:
-    struct Patt {
+    struct PAT {
         T data;
-        Patt* next;
+        PAT *next;
     };
-    TPQueue::Patt *create(const T &);
-    Patt* head;
-    Patt* tail;
+    TPQueue::PAT *create(const T &);
+    PAT *head;
+    PAT *tail;
 public:
     TPQueue() : head(nullptr), tail(nullptr) {}
     ~TPQueue();
     void push(const T &);
     T pop();
-    void removeTail();
+
+    void rmTail();
+
 };
+
 template<typename T>
-typename TPQueue<T>::Patt *TPQueue<T>::create(const T &data) {
-    Patt *pPatt = new Patt;
-    pPatt->data = data;
-    pPatt->next = nullptr;
-    return pPatt;
+typename TPQueue<T>::PAT *TPQueue<T>::create(const T &data) {
+    PAT *pPat = new PAT;
+    pPat->data = data;
+    pPat->next = nullptr;
+    return pPat;
 }
 template<typename T>
 void TPQueue<T>::push(const T &data) {
@@ -35,59 +40,57 @@ void TPQueue<T>::push(const T &data) {
         if (tail->data.prior < data.prior) {
             tail->next = create(data);
             tail = tail->next;
+        } else {
+            PAT *tempo = head;
+            head = create(data);
+            head->next = tempo;
+        }
     } else {
-        Patt *tempo = head;
-        head = create(data);
-        head->next = tempo;
-    }
-} else {
-            Patt *temp = head;
-            if (data.prior > tail->data.prior) {
-                tail->next = create(data);
-                tail = tail->next;
-            } else if (data.prior < head->data.prior) {
-                Patt *per = head;
-                head = create(data);
-                head->next = per;
-            } else {
+        PAT *temp = head;
+        if (data.prior > tail->data.prior) {
+            tail->next = create(data);
+            tail = tail->next;
+        } else if (data.prior < head->data.prior) {
+            PAT *t = head;
+            head = create(data);
+            head->next = t;
+        } else {
             while (data.prior > temp->next->data.prior) {
                 temp = temp->next;
             }
-            Patt *tem = tem->next;
+            PAT *tem = temp->next;
             temp->next = create(data);
-            temp->next->next=tem;
-            }
+            temp->next->next = tem;
+        }
     }
+}
+template<typename T>
+T TPQueue<T>::pop() {
+    T temp = tail->data;
+    rmTail();
+    return temp;
+}
+template<typename T>
+TPQueue<T>::~TPQueue() {
+    while (tail) {
+        pop();
+    }
+}
+template<typename T>
+void TPQueue<T>::rmTail() {
+    PAT *temp = head;
+    if (head == tail) {
+        delete tail;
+        head = tail = nullptr;
+    } else {
+        while (temp->next != tail) {
+            temp = temp->next;
         }
-        template<typename T>
-        T TPQueue<T>::pop() {
-            T temp = tail->data;
-            removeTail();
-            return temp;
-        }
-        template<typename  T>
-        TPQueue<T>::~TPQueue() {
-            while (tail) {
-                pop();
-            }
-        }
-        template<typename T>
-        void TPQueue<T>::removeTail() {
-            Patt *temp = head;
-            if (head == tail) {
-                delete tail;
-                head = tail = nullptr;
-            } else {
-                while (temp->next !=tail) {
-                    temp = temp->next;
-                }
-                temp->next = nullptr;
-                delete tail;
-                tail = temp;
-            }
-        }
-
-
+        temp->next = nullptr;
+        delete tail;
+        tail = temp;
+    }
+}
 struct SYM {
   char ch;
   int prior;
