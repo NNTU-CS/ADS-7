@@ -4,6 +4,12 @@
 
 #include <iterator>
 #include <stdexcept>
+
+struct SYM {
+  char ch;
+  int prior;
+};
+
 template<typename T>
 class TPQueue {
 private:
@@ -19,32 +25,32 @@ private:
 public:
     TPQueue() : head(nullptr), tail(nullptr) {}
 
-    void push(const T& data, int prior) {
-        Node* newNode = new Node;
-        newNode->data = data;
-        newNode->prior = prior;
-        newNode->next = nullptr;
+    void push(const SYM& item) {
+    Node* newItem = new Node;
+    newItem->data = item;
+    newItem->prior = item.prior;
+    newItem->next = nullptr;
 
-        if (!head) {
-            head = newNode;
-            tail = newNode;
+    if (!head) {
+        head = newItem;
+        tail = newItem;
+    } else {
+        if (item.prior > head->prior) {
+            newItem->next = head;
+            head = newItem;
         } else {
-            if (prior > head->prior) {
-                newNode->next = head;
-                head = newNode;
-            } else {
-                Node* current = head;
-                while (current->next && prior <= current->next->prior) {
-                    current = current->next;
-                }
-                newNode->next = current->next;
-                current->next = newNode;
-                if (!newNode->next) {
-                    tail = newNode;
-                }
+            Node* current = head;
+            while (current->next && item.prior <= current->next->prior) {
+                current = current->next;
+            }
+            newItem->next = current->next;
+            current->next = newItem;
+            if (!newItem->next) {
+                tail = newItem;
             }
         }
     }
+}
 
     T pop() {
         if (!head) {
@@ -71,9 +77,5 @@ public:
     }
 };
 
-struct SYM {
-  char ch;
-  int prior;
-};
 
 #endif  // INCLUDE_TPQUEUE_H_
