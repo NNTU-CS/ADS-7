@@ -5,15 +5,15 @@
 template<typename T>
 class TPQueue {
  private:
-	T data;
-	int start = 0;
-  int ind = 0;
+    T data[20] = {};
+    int start = 0;
+    int ind = 0;
 
  public:
-	T pop() {
-		start += 1;
-		return data[start - 1];
-	}
+    T pop() {
+        start += 1;
+        return data[start - 1];
+    }
     void push(T elem) {
         data[ind] = elem;
         ind += 1;
@@ -30,8 +30,8 @@ class TPQueue {
 };
 
 struct SYM {
-	char ch;
-	int prior;
+    char ch;
+    int prior;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
