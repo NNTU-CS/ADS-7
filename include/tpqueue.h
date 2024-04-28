@@ -5,47 +5,47 @@
 template<typename T>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
-private:
+ private:
   struct Item {
     T data;
-    Item* dal;
+    Item* next;
   };
-  Item* start;
-  Item* end;
-  int c = 0;
+  Item* head;
+  Item* tail;
+  int count = 0;
 
-public:
-  TPQueue() : start(nullptr), end(nullptr) {}
-  void push(const T& value) {
-    int pr = value.prior;
+ public:
+  TPQueue() : head(nullptr), tail(nullptr) {}
+  void push(const T& val) {
+    int pr = val.prior;
     Item* temp = new Item;
-    temp->data = value;
-    temp->dal = nullptr;
-    if (start == nullptr) {
-      start = temp;
-      end = temp;
-      c++;
+    temp->data = val;
+    temp->next = nullptr;
+    if (head == nullptr) {
+      head = temp;
+      tail = temp;
+      count++;
       return;
     }
-    if (start->data.prior < pr) {
-      temp->dal = start;
-      start = temp;
-      c++;
+    if (head->data.prior < pr) {
+      temp->next = head;
+      head = temp;
+      count++;
       return;
     }
-    Item* tail = start;
-    for (int i = c-1; i > 0; i--)
-      if (tail->dal != nullptr && tail->dal->data.prior >= pr)
-        tail = tail->dal;
-    temp->dal = tail->dal;
-    tail->dal = temp;
-    if (temp->dal == nullptr)
-      end = temp;
+    Item* end = head;
+    for (int k = count-1; k > 0; k--)
+      if (end->next != nullptr && end->next->data.prior >= pr)
+        end = end->next;
+    temp->next = end->next;
+    end->next = temp;
+    if (temp->next == nullptr)
+      tail = temp;
   }
   const T pop() {
-    Item* temp = start;
+    Item* temp = head;
     T result = temp->data;
-    start = start->dal;
+    head = head->next;
     delete temp;
     return result;
   }
