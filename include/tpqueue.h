@@ -4,12 +4,34 @@
 
 template<typename T>
 class TPQueue {
-  // реализация шаблона очереди с приоритетом на связанном списке
+ private:
+	T data;
+	int start = 0;
+  int ind = 0;
+
+ public:
+	T pop() {
+		start += 1;
+		return data[start - 1];
+	}
+    void push(T elem) {
+        data[ind] = elem;
+        ind += 1;
+        for (int i = start; i < ind; i++) {
+            for (int j = start; j < ind - 1; j++) {
+                if ((data[j + 1].prior) > (data[j].prior)) {
+                    T tec = data[j];
+                    data[j] = data[j + 1];
+                    data[j + 1] = tec;
+                }
+            }
+        }
+    }
 };
 
 struct SYM {
-  char ch;
-  int prior;
+	char ch;
+	int prior;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
