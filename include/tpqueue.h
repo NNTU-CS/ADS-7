@@ -19,6 +19,7 @@ struct Node {
 };
 
 // Очередь с приоритетом
+template<typename T>
 class TPQueue {
 private:
     Node* head;
