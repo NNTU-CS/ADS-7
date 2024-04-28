@@ -2,13 +2,17 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 #include <iostream>
+#include <string>
 
 template <typename T>
 struct QueueNode {
     T value;
     int priority;
     QueueNode<T>* next;
-    QueueNode(const T& val, int prio) : value(val), priority(prio), next(nullptr) {}
+    QueueNode(const T& val, int prio) : 
+    value(val), 
+    priority(prio), 
+    next(nullptr) {}
 };
 
 struct SYM {
@@ -18,10 +22,10 @@ struct SYM {
 
 template <typename T>
 class TPQueue {
-private:
+ private:
     QueueNode<T>* front;
 
-public:
+ public:
     TPQueue() : front(nullptr) {}
 
     void push(const T& item) {
@@ -29,8 +33,7 @@ public:
         if (!front || item.prior > front->priority) {
             newNode->next = front;
             front = newNode;
-        }
-        else {
+        } else {
             QueueNode<T>* curr = front;
             while (curr->next && item.prior <= curr->next->priority) {
                 curr = curr->next;
