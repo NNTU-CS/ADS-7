@@ -21,12 +21,12 @@ struct Node {
 // Очередь с приоритетом
 template<typename T>
 class TPQueue {
-    private:
-        Node* head;
-        Node* tail;
+private:
+    Node* head;
+    Node* tail;
 
-    public:
-        TPQueue() : head(nullptr), tail(nullptr) {}
+public:
+    TPQueue() : head(nullptr), tail(nullptr) {}
 
     ~TPQueue() {
         while (head) {
