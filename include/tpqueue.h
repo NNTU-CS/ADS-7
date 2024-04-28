@@ -6,8 +6,8 @@ template<typename T>
 class TPQueue {
  private:
   struct Item {
-   T data;
-   Item* next;
+  T data;
+  Item* next;
   };
   Item* head;
   Item* tail;
@@ -33,7 +33,7 @@ class TPQueue {
       return;
     }
     Item* end = head;
-    for(int i = cnt - 1; i > 0; i--)
+    for (int i = cnt - 1; i > 0; i--)
       if (end->next != nullptr && end->next->data.prior >= prioritet)
         end = end->next;
     temp->next = end->next;
