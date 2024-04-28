@@ -54,7 +54,7 @@ class TPQueue {
 
     T pop() {
         if (!head) {
-          throw std::out_of_range (" ");
+          throw std::out_of_range(" ");
         }
 
         T data = head->data;
