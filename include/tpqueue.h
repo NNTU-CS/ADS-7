@@ -6,10 +6,10 @@
 template<typename T>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
- struct ITEM {
+struct ITEM {
         T data;
         ITEM* next;
-    };
+  };
 
  private:
     ITEM* head;
