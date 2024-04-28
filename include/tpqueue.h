@@ -27,7 +27,6 @@ class TPQueue {
     T pop();
 
     void rmTail();
-
 };
 
 template<typename T>
