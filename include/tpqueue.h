@@ -24,7 +24,7 @@ class TPQueue {
     }
   }
 
-  void push(const SYM& val) {
+  void push(const T& val) {
     Item* newV = new Item;
     newV->data = val;
     newV->next = nullptr;
