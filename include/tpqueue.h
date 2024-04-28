@@ -1,6 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <string>
 
 template<typename T>
 struct Node {
@@ -17,10 +18,10 @@ struct SYM {
 
 template<typename  T>
 class TPQueue {
-  private:
+ private:
     Node<T>* head;
 
-  public:
+ public:
     TPQueue() : head(nullptr) {}
 
     void push(const T& data) {
@@ -43,7 +44,7 @@ class TPQueue {
 
     T pop() {
         if (isEmpty()) {
-            throw std::string("Queue is empty");
+          throw std::string("Queue is empty");
         }
 
         T res = head->data;
