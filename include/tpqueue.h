@@ -55,9 +55,7 @@ class TPQueue {
     delete t;
     return res;
   }
-  bool isEmpty() const { 
-      return head == nullptr; 
-  }
+  bool isEmpty() const { return head == nullptr; }
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
