@@ -50,9 +50,9 @@ void TPQueue<T>::push(const T &data) {
             tail->next = create(data);
             tail = tail->next;
         } else if (data.prior < head->data.prior) {
-            PAT *t = head;
+            PAT *t1 = head;
             head = create(data);
-            head->next = t;
+            head->next = t1;
         } else {
             while (data.prior > temp->next->data.prior) {
                 temp = temp->next;
