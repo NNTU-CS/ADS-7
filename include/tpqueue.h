@@ -12,7 +12,7 @@ struct SYM {
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     struct Node {
         T data;
         Node* next;
@@ -22,7 +22,7 @@ private:
     Node* head;
     Node* tail;
 
-public:
+ public:
     TPQueue() : head(nullptr), tail(nullptr) {}
 
     void push(const SYM& item) {
@@ -54,7 +54,7 @@ public:
 
     T pop() {
         if (!head) {
-           throw std::out_of_range (" ");
+          throw std::out_of_range (" ");
         }
 
         T data = head->data;
