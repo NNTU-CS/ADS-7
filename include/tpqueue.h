@@ -2,7 +2,13 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+struct SYM {
+  char ch;
+  int prior;
+};
+
 template<typename T>
+
 class TPQueue {
  private:
     struct node {
@@ -37,11 +43,6 @@ class TPQueue {
         delete tmp;
         return last;
     }
-};
-
-struct SYM {
-  char ch;
-  int prior;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
