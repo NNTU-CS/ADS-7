@@ -16,6 +16,7 @@ class TPQueue {
         node* next;
     };
     node* head;
+
  public:
     TPQueue() : head(nullptr) {}
     void push(SYM new_sym) {
