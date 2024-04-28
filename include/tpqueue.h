@@ -11,10 +11,10 @@ struct Node {
 };
 
 class TPQueue {
-private:
+ private: 
     Node* head;
 
-public:
+ public:
     TPQueue() : head(nullptr) {}
 
     void enqueue(int data, int priority) {
@@ -27,7 +27,7 @@ public:
             head = newNode;
         } else {
             Node* current = head;
-            while (current->next != nullptr && current->next->priority >= priority) {
+            while (current->next!=nullptr&&current->next->priority>=priority) {
                 current = current->next;
             }
             newNode->next = current->next;
@@ -52,7 +52,7 @@ public:
     void printQueue() {
         Node* current = head;
         while (current != nullptr) {
-            std::cout << current->data << " (Priority: " << current->priority << ")" << std::endl;
+            std::cout<<current->data<<"(Priority:"<<current->priority <<")"<<std::endl;
             current = current->next;
         }
     }
