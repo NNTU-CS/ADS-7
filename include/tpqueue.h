@@ -4,7 +4,7 @@
 
 template<typename T>
 class TPQueue {
-  private:
+ private:
   struct Node {
     T data;
     Node* next;
@@ -14,7 +14,7 @@ class TPQueue {
   Node* tail;
   int count = 0;
 
-  public:
+ public:
   TPQueue(): head(nullptr), tail(nullptr) {}
 
   void push(const T& val) {
@@ -35,6 +35,8 @@ class TPQueue {
       temp->next = head;
       head = temp;
       count++;
+
+      return;
     }
     
     Node* end = head;
