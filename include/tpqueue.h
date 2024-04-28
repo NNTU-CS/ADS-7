@@ -5,7 +5,7 @@
 template<typename T>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
- private:
+private:
   struct Item {
     T data;
     Item* dal;
@@ -13,7 +13,8 @@ class TPQueue {
   Item* start;
   Item* end;
   int c = 0;
- public:
+
+public:
   TPQueue() : start(nullptr), end(nullptr) {}
   void push(const T& value) {
     int pr = value.prior;
