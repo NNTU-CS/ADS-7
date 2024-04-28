@@ -1,7 +1,7 @@
 // Copyright 2022 NNTU-CS
+#include <iostream>
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-#include <iostream>
 
 
 struct SYM {
@@ -9,17 +9,19 @@ struct SYM {
     int prior;
 };
 
+
 struct Node {
     SYM data;
     Node* next;
 
-    Node(const SYM& data) : data(data), next(nullptr) {}
+    explicit Node(const SYM& data) : data(data), next(nullptr) {}
 };
 
 class TPQueue {
 private:
     Node* head;
     Node* tail;
+
 
 public:
     TPQueue() : head(nullptr), tail(nullptr) {}
@@ -31,6 +33,7 @@ public:
             delete temp;
         }
     }
+
 
     void push(const SYM& data) {
         Node* newItem = new Node(data);
@@ -49,6 +52,7 @@ public:
             tail = newItem;
         }
     }
+
 
     SYM pop() {
         if (!head) {
