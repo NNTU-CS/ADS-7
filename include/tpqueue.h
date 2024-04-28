@@ -23,7 +23,7 @@ class TPQueue {
     TPQueue() : ptr(nullptr) {}
 
     void push(T newsym) {
-        sys* list = new Qlist;
+        sys* list = new sys;
         list->sym = newsym;
         list->next = nullptr;
 
