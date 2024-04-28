@@ -6,7 +6,7 @@
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     struct PAT {
         T data;
         PAT *next;
@@ -14,14 +14,13 @@ private:
     TPQueue::PAT *create(const T &);
     PAT *head;
     PAT *tail;
-public:
+ public:
     TPQueue() : head(nullptr), tail(nullptr) {}
     ~TPQueue();
     void push(const T &);
     T pop();
 
     void rmTail();
-
 };
 
 template<typename T>
