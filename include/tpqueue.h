@@ -23,6 +23,7 @@ class TPQueue {
 
  public:
     TPQueue() : head(nullptr) {}
+
     ~TPQueue() {
         while (!isEmpty()) {
             pop();
@@ -44,19 +45,19 @@ class TPQueue {
         present->next = newNode;
     }
 }
-T pop() {
-    if (isEmpty()) {
-        throw std::out_of_range("Queue is empty");
-    }
-    T res = head->data;
-    Node<T>* temp = head;
-    head = head->next;
-    delete temp;
-    return  res;
-}
 
-bool isEmpty() const {
-    return !head;
-}
+    T pop() {
+        if (isEmpty()) {
+            throw std::out_of_range("Queue is empty");
+        }
+        T res = head->data;
+        Node<T>* temp = head;
+        head = head->next;
+        delete temp;
+        return  res;
+    }
+
+    bool isEmpty() const {
+        return !head;
+    }
 };
-#endif  // INCLUDE_TPQUEUE_H_
