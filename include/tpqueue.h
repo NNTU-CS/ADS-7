@@ -13,6 +13,7 @@ class TPQueue {
   };
   Item* head;
   Item* tail;
+  
  public:
   TPQueue(): head(nullptr), tail(nullptr) {}
   ~TPQueue() {
@@ -33,7 +34,7 @@ class TPQueue {
       head = newV;
       tail = newV;
     } else {
-      if (item.prior > head->prior) {
+      if (val.prior > head->prior) {
         temp->next = head;
         head = newV;
       } else {
@@ -51,7 +52,7 @@ class TPQueue {
   }
 
   T pop() {
-    SYM data = head->data;
+    T data = head->data;
     Item* temp = head;
     head = head->next;
     delete temp;
