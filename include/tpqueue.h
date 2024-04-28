@@ -1,15 +1,13 @@
 // Copyright 2022 NNTU-CS
 #include <iostream>
-#ifndef INCLUDE_TPQUEUE_H_
-#define INCLUDE_TPQUEUE_H_
 
-
+// Структура для элемента очереди
 struct SYM {
     char ch;
     int prior;
 };
 
-
+// Узел списка
 struct Node {
     SYM data;
     Node* next;
@@ -17,11 +15,11 @@ struct Node {
     explicit Node(const SYM& data) : data(data), next(nullptr) {}
 };
 
+// Очередь с приоритетом
 class TPQueue {
 private:
     Node* head;
     Node* tail;
-
 
 public:
     TPQueue() : head(nullptr), tail(nullptr) {}
@@ -34,7 +32,7 @@ public:
         }
     }
 
-
+    // Вставка элемента в очередь с учетом приоритета
     void push(const SYM& data) {
         Node* newItem = new Node(data);
         if (!head || data.prior > head->data.prior) {
@@ -53,7 +51,7 @@ public:
         }
     }
 
-
+    // Извлечение элемента из очереди
     SYM pop() {
         if (!head) {
             throw std::out_of_range("Queue is empty");
@@ -68,6 +66,7 @@ public:
         return data;
     }
 
+    // Проверка на пустоту
     bool isEmpty() const {
         return head == nullptr;
     }
