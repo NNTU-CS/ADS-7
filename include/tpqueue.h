@@ -22,20 +22,17 @@ class TPQueue {
     Node* temp = new Node;
     temp->data = val;
     temp->next = nullptr;
-    
     if (head == nullptr) {
       head = temp;
       tail = temp;
       count++;
-      
       return;
     }
     
     if (head->data.prior < pr) {
       temp->next = head;
       head = temp;
-      count++;
-
+      count++
       return;
     }
     
@@ -43,20 +40,16 @@ class TPQueue {
     for (int k = count-1; k > 0; k--)
       if (end->next != nullptr && end->next->data.prior >= pr)
         end = end->next;
-    
     temp->next = end->next;
     end->next = temp;
-    
     if (temp->next == nullptr)
       tail = temp->next;
   }
-
   const T pop() {
     Node* temp = head;
     T result = temp->data;
     head = head->next;
     delete temp;
-    
     return result;
   }
 };
