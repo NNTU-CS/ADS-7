@@ -9,6 +9,7 @@ template<typename T>
     T data;
     ITEM* next;
   };
+
   private:
     ITEM* head;
     ITEM* tail;
