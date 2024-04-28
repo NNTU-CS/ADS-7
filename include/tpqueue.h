@@ -9,9 +9,9 @@ struct QueueNode {
     T value;
     int priority;
     QueueNode<T>* next;
-    QueueNode(const T& val, int prio) : 
-    value(val), 
-    priority(prio), 
+    QueueNode(const T& val, int prio) :
+    value(val),
+    priority(prio),
     next(nullptr) {}
 };
 
