@@ -5,28 +5,29 @@
 #include <iostream>
 
 struct Node {
-    SYM data;
+    int data;
+    int priority;
     Node* next;
 };
 
 class TPQueue {
 private:
     Node* head;
-public:
-    TPQueue() {
-        head = nullptr;
-    }
 
-    void push(SYM item) {
+public:
+    TPQueue() : head(nullptr) {}
+
+    void enqueue(int data, int priority) {
         Node* newNode = new Node;
-        newNode->data = item;
-        
-        if (!head || head->data.prior < item.prior) {
+        newNode->data = data;
+        newNode->priority = priority;
+
+        if (head == nullptr || priority > head->priority) {
             newNode->next = head;
             head = newNode;
         } else {
             Node* current = head;
-            while (current->next && current->next->data.prior >= item.prior) {
+            while (current->next != nullptr && current->next->priority >= priority) {
                 current = current->next;
             }
             newNode->next = current->next;
@@ -34,25 +35,24 @@ public:
         }
     }
 
-    SYM pop() {
-        if (!head) {
-            throw std::out_of_range("Queue is empty");
+    int dequeue() {
+        if (head == nullptr) {
+            std::cerr << "Queue is empty" << std::endl;
+            return -1;
         }
+
+        int data = head->data;
         Node* temp = head;
-        SYM item = head->data;
         head = head->next;
         delete temp;
-        return item;
+
+        return data;
     }
 
-    bool isEmpty() {
-        return head == nullptr;
-    }
-
-    void print() {
+    void printQueue() {
         Node* current = head;
-        while (current) {
-            std::cout << "Character: " << current->data.ch << ", Priority: " << current->data.prior << std::endl;
+        while (current != nullptr) {
+            std::cout << current->data << " (Priority: " << current->priority << ")" << std::endl;
             current = current->next;
         }
     }
