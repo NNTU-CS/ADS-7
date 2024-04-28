@@ -13,7 +13,7 @@ class TPQueue {
   };
   Item* head;
   Item* tail;
-  
+
  public:
   TPQueue(): head(nullptr), tail(nullptr) {}
   ~TPQueue() {
@@ -35,7 +35,7 @@ class TPQueue {
       tail = newV;
     } else {
       if (val.prior > head->prior) {
-        temp->next = head;
+        newV->next = head;
         head = newV;
       } else {
         Item temp = head;
