@@ -6,11 +6,11 @@
 template<typename T>
 class TPQueue {
 struct ITEM {
-  T data;
-  ITEM* next;
+        T data;
+        ITEM* next;
 };
 
-  private:
+ private:
     ITEM* head;
     ITEM* tail;
     ITEM* create(const T& data) {
@@ -20,7 +20,7 @@ struct ITEM {
         return item;
     }
 
-  public:
+ public:
     TPQueue() {
         head = nullptr;
         tail = nullptr;
