@@ -9,7 +9,7 @@ class TPQueue {
 struct ITEM {
         T data;
         ITEM* next;
-  };
+};
 
  private:
     ITEM* head;
