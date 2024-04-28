@@ -22,7 +22,7 @@ class TPQueue {
     temp->data = a;
     temp->next = nullptr;
     return temp;
-	}
+  }
 
  public:
   TPQueue() : head(nullptr), tail(nullptr) {}
