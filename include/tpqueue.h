@@ -12,8 +12,7 @@ class TPQueue {
     int getSize() {
         return end - begin;
     }
-    
-    void push(T& item) {
+    void push(T item) {
         arr[end] = item;
         end++;
         int pe = end;
