@@ -4,41 +4,39 @@
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     struct iList {
         T inf;
         iList *next;
     };
-    iList *ensuing, *last;
-    int box;
+    iList *first, *last;
+    int counter;
 
-public:
-    TPQueue() : ensuing(nullptr), last(nullptr), box(0) {}
-
-    void push(const T &z) {
+ public:
+    TPQueue() : first(nullptr), last(nullptr), counter(0) {}
+    void push(const T &value) {
         iList *newList = new iList;
+        newList->inf = value;
         newList->inf = nullptr;
-        newList->inf = z;
 
-
-        if (ensuing == nullptr) {
-            box++;
-            ensuing = newList;
+        if (first == nullptr) {
+            first = newList;
             last = newList;
+            counter++;
             return;
         }
 
-        if ((ensuing->inf.pr) < z.pr) {
-            box++;
-            newList->next = ensuing;
-            ensuing = newList;
+        if ((first->inf.pr) < value.pr) {
+            newList->next = first;
+            first = newList;
+            counter++;
             return;
         }
 
-        iList *end = ensuing;
+        iList *end = first;
 
-        for (int j = box - 1; j > 0; j--) {
-            if (end->next != nullptr && end->next->inf.pr >= z.pr) {
+        for (int i = counter - 1; i > 0; i--) {
+            if (end->next != nullptr && end->next->inf.pr >= value.pr) {
                 end = end->next;
             }
         }
@@ -50,12 +48,11 @@ public:
             last = newList;
         }
     }
-
     T pop() {
-        iList *mp = ensuing;
-        T result = mp->inf;
-        ensuing = ensuing->next;
-        delete mp;
+        iList *temp = first;
+        T result = temp->inf;
+        first = first->next;
+        delete temp;
         return result;
     }
 };
