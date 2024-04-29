@@ -2,7 +2,7 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template <typename T, int size>
+template<typename T>
 class TPQueue {
  private:
     T data[100] = {};
