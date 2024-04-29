@@ -2,7 +2,7 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template<typename T>
+template <typename T, int size>
 class TPQueue {
  private:
     T data[100] = {};
@@ -20,18 +20,18 @@ class TPQueue {
         for (int t = start; t < ind; t++) {
             for (int i = start; i < ind - 1; i++) {
                 if (data[i + 1].prioritet > data[i].prioritet) {
-                        T b = data[i];
-                        data[i] = data[i + 1];
-                        data[i + 1] = b;
-                    }
+                    T b = data[i];
+                    data[i] = data[i + 1];
+                    data[i + 1] = b;
+                }
             }
         }
     }
 };
 
 struct SYM {
-  char ch;
-  int prior;
+    char ch;
+    int prior;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
