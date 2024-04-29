@@ -24,8 +24,7 @@ class TPQueue {
         if (!head || value.prior > head->data.prior) {
             temp->next = head;
             head = temp;
-        }
-        else {
+        } else {
             Node* current = head;
             while (current->next && value.prior <= current->next->data.prior) {
                 current = current->next;
