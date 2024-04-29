@@ -50,7 +50,7 @@ class TPQueue {
         return arr[begin - 1];
     }
     T getElem(int indx) {
-        return arr[indx]
+        return arr[indx];
     }
 };
 
