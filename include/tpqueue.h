@@ -5,33 +5,15 @@
 template<typename T>
 class TPQueue {
  private:
-    T* arr;
+    T arr[10] ={};
     int begin, end;
-    const int SIZE = 100;
 
  public:
-    TPQueue() {
-        begin = 0;
-        end = 0;
-        arr = new T[SIZE];
-    }
-    ~TPQueue() {
-        delete[] arr;
-    }
     int getSize() {
         return end - begin;
     }
-    bool isEmpty() {
-        if (this->getSize() == 0)
-            return true;
-        return false;
-    }
-    bool isFull() {
-        if (this->getSize() != 0)
-            return true;
-        return false;
-    }
-    void push(const T& item) {
+    
+    void push(T& item) {
         arr[end] = item;
         end++;
         int pe = end;
@@ -46,8 +28,18 @@ class TPQueue {
         }
     }
     T pop() {
-        begin--;
+        begin++;
         return arr[begin - 1];
+    }
+    bool isEmpty() {
+        if (this->getSize() == 0)
+            return true;
+        return false;
+    }
+    bool isFull() {
+        if (this->getSize() != 0)
+            return true;
+        return false;
     }
     T getElem(int indx) {
         return arr[indx];
