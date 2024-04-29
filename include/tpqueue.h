@@ -7,29 +7,30 @@ class TPQueue {
  private:
     struct iList {
         T inf;
-        iList *next;
+        iList* next;
     };
-    iList *first, *last;
+    iList* first;
+    iList* last;
     int counter;
 
  public:
     TPQueue() : first(nullptr), last(nullptr), counter(0) {}
     void push(const T &value) {
-        iList *newList = new iList;
+        iList* newList = new iList;
         newList->inf = value;
-        newList->inf = nullptr;
+        newList->next = nullptr;
 
         if (first == nullptr) {
+            counter++;
             first = newList;
             last = newList;
-            counter++;
             return;
         }
 
         if ((first->inf.pr) < value.pr) {
+            counter++;
             newList->next = first;
             first = newList;
-            counter++;
             return;
         }
 
@@ -61,4 +62,5 @@ struct SYM {
     char ch;
     int pr;
 };
+
 #endif  // INCLUDE_TPQUEUE_H_
