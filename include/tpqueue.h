@@ -19,7 +19,7 @@ class TPQueue {
         ind += 1;
         for (int t = start; t < ind; t++) {
             for (int i = start; i < ind - 1; i++) {
-                if (data[i + 1].prioritet > data[i].prioritet) {
+                if (data[i + 1].prior > data[i].prior) {
                     T b = data[i];
                     data[i] = data[i + 1];
                     data[i + 1] = b;
