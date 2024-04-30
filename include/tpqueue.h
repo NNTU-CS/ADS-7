@@ -22,7 +22,6 @@ class TPQueue {
     if (first == nullptr) {
       first = elem;
       last = elem;
-      print();
       return;
     }
 
