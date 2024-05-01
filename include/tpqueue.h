@@ -6,11 +6,11 @@ template<typename T>
 class TPQueue {
  private:
    struct Item {
-    T item;
-    Item* next;
-  };
-  Item* start;
-  Item* end;
+     T item;
+     Item* next;
+   };
+   Item* start;
+   Item* end;
 
  public:
    TPQueue(): start(nullptr), end(nullptr) {}
