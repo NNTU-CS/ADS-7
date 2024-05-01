@@ -4,7 +4,7 @@
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     int count;
     struct st {
         T data;
@@ -12,7 +12,8 @@ private:
     };
     st* frst;
     st* last;
-public:
+
+ public:
     TPQueue() : frst(nullptr), last(nullptr), count(0) {}
     void push(const T& value) {
         st* nst = new st;
