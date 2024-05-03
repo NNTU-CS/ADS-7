@@ -4,56 +4,50 @@
 #include <iostream>
 
 template<typename T>
+struct QueueNode {
+  T data;
+  QueueNode* next;
+};
+template<typename T>
 class TPQueue {
-    QueueNode* head;
-    QueueNode* tail;
+private:
+QueueNode<T>* head;
 public:
-  TPQueue() : head(nullptr), tail(nullptr) {}
-
-void push(const T& item) {
-        QueueNode* newNode = new QueueNode;
-        newNode->data = item;
-        newNode->next = nullptr;
-
-    if (!head) {
-      head = tail = newNode;
-    } else {
-      if (head->data.prior < item.prior) {
-        newNode->next = head;
-        head = newNode;
-      } else {
-        QueueNode* current = head;
-        while (current->next && current->next->data.prior >= item.prior) {
-          current = current->next;
-        }
-        newNode->next = current->next;
-        current->next = newNode;
-        if (!newNode->next) {
-          tail = newNode;
-        }
-      }
+TPQueue() : head(nullptr) {}
+ ~TPQueue() {
+    while (head) {
+     QueueNode<T>* temp = head;
+     head = head->next;
+     delete temp;
+     }
+   }
+void push(const T& elem) {
+  QueueNode<T>* newNode = new QueueNode<T>{elem, nullptr};
+  if (!head || head->data.prior < elem.prior) {
+    newNode->next = head;
+    head = newNode;
+  } else {
+    QueueNode<T>* current = head;
+    while (current->next && current->next->data.prior >= elem.prior) {
+      current = current->next;
     }
+    newNode->next = current->next;
+    current->next = newNode;
   }
+}
 T pop() {
   if (!head) {
     throw std::out_of_range("Queue is empty");
   }
-  T item = head->data;
-  QueueNode* temp = head;
+  QueueNode<T>* temp = head;
+  T item = temp->data;
   head = head->next;
   delete temp;
-  return item;
+  delete temp;
 }
 bool isEmpty() const {
   return head == nullptr;
 }
-void printQueue() const {
-  QueueNode* current = head;
-  while (current) {
-    std::cout << "(" << current->data.ch << ", " << current->data.prior << ") ";
-    current = current->next;
-  }
-  std::cout << std::endl;
 };
 struct SYM {
   char ch;
