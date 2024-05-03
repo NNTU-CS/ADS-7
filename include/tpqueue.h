@@ -10,12 +10,12 @@ struct QueueNode {
 };
 template<typename T>
 class TPQueue {
-private:
-QueueNode<T>* head;
-QueueNode<T>* tail;
+  private:
+    QueueNode<T>* head;
+    QueueNode<T>* tail;
 public:
-TPQueue() : head(nullptr), tail(nullptr) {}
- ~TPQueue() {
+  TPQueue() : head(nullptr), tail(nullptr) {}
+  ~TPQueue() {
     while (head) {
      QueueNode<T>* temp = head;
      head = head->next;
