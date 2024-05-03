@@ -12,8 +12,9 @@ template<typename T>
 class TPQueue {
 private:
 QueueNode<T>* head;
+QueueNode<T>* tail;
 public:
-TPQueue() : head(nullptr) {}
+TPQueue() : head(nullptr), tail(nullptr) {}
  ~TPQueue() {
     while (head) {
      QueueNode<T>* temp = head;
@@ -26,6 +27,9 @@ void push(const T& elem) {
   if (!head || head->data.prior < elem.prior) {
     newNode->next = head;
     head = newNode;
+    if (!tail) {
+      tail = newNode;
+    }
   } else {
     QueueNode<T>* current = head;
     while (current->next && current->next->data.prior >= elem.prior) {
@@ -33,6 +37,9 @@ void push(const T& elem) {
     }
     newNode->next = current->next;
     current->next = newNode;
+    if (!newNode->next) {
+      tail = newNode;
+    }
   }
 }
 T pop() {
@@ -42,8 +49,11 @@ T pop() {
   QueueNode<T>* temp = head;
   T item = temp->data;
   head = head->next;
+  if (!head) {
+    tail = nullptr;
+  }
   delete temp;
-  delete temp;
+  return item;
 }
 bool isEmpty() const {
   return head == nullptr;
