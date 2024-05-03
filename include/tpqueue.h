@@ -10,11 +10,11 @@ struct QueueNode {
 };
 template<typename T>
 class TPQueue {
-  private:
+    private:
     QueueNode<T>* head;
     QueueNode<T>* tail;
 
-public:
+  public:
   TPQueue() : head(nullptr), tail(nullptr) {}
   ~TPQueue() {
     while (head) {
@@ -23,6 +23,7 @@ public:
      delete temp;
      }
    }
+
 void push(const T& elem) {
   QueueNode<T>* newNode = new QueueNode<T>{elem, nullptr};
   if (!head || head->data.prior < elem.prior) {
