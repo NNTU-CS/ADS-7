@@ -8,21 +8,23 @@ struct QueueNode {
   T data;
   QueueNode* next;
 };
+
 template<typename T>
 class TPQueue {
-    private:
+ private:
     QueueNode<T>* head;
     QueueNode<T>* tail;
 
-  public:
-  TPQueue() : head(nullptr), tail(nullptr) {}
-  ~TPQueue() {
-    while (head) {
-     QueueNode<T>* temp = head;
-     head = head->next;
-     delete temp;
-     }
-   }
+ public:
+    TPQueue() : head(nullptr), tail(nullptr) {}
+
+    ~TPQueue() {
+        while (head) {
+            QueueNode<T>* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
 
 void push(const T& elem) {
   QueueNode<T>* newNode = new QueueNode<T>{elem, nullptr};
