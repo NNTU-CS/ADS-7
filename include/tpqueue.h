@@ -1,70 +1,62 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-#include <iterator>
-#include <stdexcept>
 
 template<typename T>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
  private:
-    struct Node {
- T data;
- Node* next;
-        int prior;
-    };
- Node* head;
- Node* tail;
+  struct elementOfList {
+    T element;
+    elementOfList* nextPointer = nullptr;
+  };
+  elementOfList* head;
+  void insertElementAfter(elementOfList* elemOfList, T elem) {
+    elementOfList* insertingEl = new elementOfList;
+    insertingEl->element = elem;
+    insertingEl->nextPointer = elemOfList->nextPointer;
+    elemOfList->nextPointer = insertingEl;
+  }
+  void insertHead(T elem) {
+  elementOfList* insertingEl = new elementOfList;
+  insertingEl->element = elem;
+  insertingEl->nextPointer = head;
+  head = insertingEl;
+  }
+  void removeHead() {
+  head = head->nextPointer;
+  }
+
  public:
-    TPQueue() : head(nullptr), tail(nullptr) {}
-    void push(const SYM& item) {
- Node* newItem = new Node;
- newItem->data = item;
- newItem->prior = item.prior;
- newItem->next = nullptr;
-    if (!head) {
- head = newItem;
- tail = newItem;
- } else {
-        if (item.prior > head->prior) {
- newItem->next = head;
-            head = newItem;
-        } else {
- Node* current = head;
-            while (current->next && item.prior <= current->next->prior) {
- current = current->next;
-            }
- newItem->next = current->next;
-            current->next = newItem;
-            if (!newItem->next) {
-                tail = newItem;
-            }
+  TPQueue() { }
+  void push(T element) {
+    if (head == nullptr) {
+      insertHead(element);
+    } else {
+      elementOfList* currentEl;
+      currentEl = head;
+      if (currentEl->element.prior < element.prior) {
+      insertHead(element);
+      } else {
+        if (currentEl->nextPointer == nullptr) {
+          insertElementAfter(currentEl, element);
+          return;
         }
-    }
-}
-
- T pop() {
-        if (!head) {
-          throw std::out_of_range (" ");
-          throw std::out_of_range(" ");
+      while (currentEl->nextPointer != nullptr) {
+        if (currentEl->nextPointer->element.prior < element.prior) {
+          insertElementAfter(currentEl, element);
+          break;
         }
-
- T data = head->data;
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-        return data;
-    }
-    bool isEmpty() {
-        return !head;
-    }
-    ~TPQueue() {
-        while (head) {
-            Node* temp = head;
-            head = head->next;
-            delete temp;
+          currentEl = currentEl->nextPointer;
         }
+      }
     }
+  }
+  T pop() {
+    T res = head->element;
+    removeHead();
+    return res;
+  }
 };
 
 struct SYM {
