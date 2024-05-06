@@ -75,6 +75,8 @@ TPQueue<T>::~TPQueue() {
 }
 
 struct SYM {
+  char ch;
+  int prior;
     char ch;
     int prior;
 };
