@@ -2,9 +2,31 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template<typename T>
+template <typename T>
 class TPQueue {
-  // реализация шаблона очереди с приоритетом на связанном списке
+ private:
+  T data[10] = {};
+  int index = 0, start = 0;
+
+ public:
+  T pop() {
+    start += 1;
+    return data[start - 1];
+  }
+
+  void push(T elem) {
+    data[index] = elem;
+    index += 1;
+    for (int i = start; i < index; i++) {
+      for (int j = start; j < index - 1; j++) {
+        if (data[j].prior < data[j + 1].prior) {
+          T boofer = data[j];
+          data[j] = data[j + 1];
+          data[j + 1] = boofer;
+        }
+      }
+    }
+  }
 };
 
 struct SYM {
