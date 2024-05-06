@@ -2,13 +2,31 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
-template <typename T, int size>
+template<typename T>
 class TPQueue {
  private:
   T data[10] = {};
   int index = 0, start = 0;
 
  public:
+  int get_size() { return index - start; }
+
+  bool is_empty() {
+    if (this->get_size() == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool is_full() {
+    if (this->get_size() != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   T pop() {
     start += 1;
     return data[start - 1];
@@ -27,6 +45,8 @@ class TPQueue {
       }
     }
   }
+
+  T get_elem_by_id(int id) { return data[id]; }
 };
 
 struct SYM {
