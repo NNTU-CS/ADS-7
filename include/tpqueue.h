@@ -11,14 +11,6 @@ class TPQueue {
  public:
   int get_size() { return index - start; }
 
-  bool is_empty() {
-    if (this->get_size() == 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   bool is_full() {
     if (this->get_size() != 0) {
       return true;
