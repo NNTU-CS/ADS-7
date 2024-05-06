@@ -4,6 +4,7 @@
 #include <string>
 
 template<typename T>
+class TPQueue {
  private:
     struct Item {
         T value;
