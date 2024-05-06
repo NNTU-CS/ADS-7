@@ -5,24 +5,25 @@
 template <typename T, int size>
 class TPQueue {
  private:
-  T arr[100] = {};
-  int ind = 0, F = 0;
+  T data[10] = {};
+  int index = 0, start = 0;
 
  public:
+
   T pop() {
-    F += 1;
-    return arr[F - 1];
+    start += 1;
+    return data[start - 1];
   }
 
   void push(T elem) {
-    arr[ind] = elem;
-    ind += 1;
-    for (int i = F; i < ind; i++) {
-      for (int j = F; j < ind - 1; j++) {
-        if (arr[j].prior < arr[j + 1].prior) {
-          T boofer = arr[j];
-          arr[j] = arr[j + 1];
-          arr[j + 1] = boofer;
+    data[index] = elem;
+    index += 1;
+    for (int i = start; i < index; i++) {
+      for (int j = start; j < index - 1; j++) {
+        if (data[j].prior < data[j + 1].prior) {
+          T boofer = data[j];
+          data[j] = data[j + 1];
+          data[j + 1] = boofer;
         }
       }
     }
