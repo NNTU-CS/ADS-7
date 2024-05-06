@@ -9,7 +9,6 @@ class TPQueue {
   int index = 0, start = 0;
 
  public:
-
   T pop() {
     start += 1;
     return data[start - 1];
