@@ -11,14 +11,6 @@ class TPQueue {
  public:
   int get_size() { return index - start; }
 
-  bool is_full() {
-    if (this->get_size() != 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   T pop() {
     start += 1;
     return data[start - 1];
