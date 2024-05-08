@@ -4,18 +4,18 @@
 
 #include <stdexcept>
 
+template<typename T>
 class Node {
  public:
     T data;
     Node* next;
-    Node( T data, Node* next ) : data{data},
-                                 next{next} {};
+    Node( T data, Node* next ) : data{data}, next{next} {};
 };
 
 template<typename T>
 class TPQueue {
  private:
-    Node* head;
+    Node<T>* head;
 
  public:
     TPQueue() : head(nullptr) {}
@@ -25,7 +25,7 @@ class TPQueue {
         }
     }
     void push(const T& value) {
-        Node* temp = new Node( value, nullptr );
+        Node* temp = new Node<T>( value, nullptr );
         if (!head || value.prior > head->data.prior) {
             temp->next = head;
             head = temp;
@@ -40,7 +40,7 @@ class TPQueue {
     }
     T pop() {
         if (!head) {
-            throw std::underflow_exception("Queue empty");
+            throw std::underflow_error("Queue empty");
         }
         T res = head->data;
         Node* temp = head;
