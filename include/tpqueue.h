@@ -9,7 +9,7 @@ class Node {
  public:
     T data;
     Node* next;
-    Node( T data, Node<T>* next ) : data{data}, next{next} {};
+    Node(T data, Node<T>* next) : data{data}, next{next} {};
 };
 
 template<typename T>
@@ -20,7 +20,7 @@ class TPQueue {
  public:
     TPQueue() : head(nullptr) {}
     ~TPQueue() {
-        for (;head;) {
+        for ( ; head; ) {
             pop();
         }
     }
