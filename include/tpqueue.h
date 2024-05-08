@@ -9,7 +9,7 @@ class Node {
  public:
     T data;
     Node* next;
-    Node( T data, Node* next ) : data{data}, next{next} {};
+    Node( T data, Node<T>* next ) : data{data}, next{next} {};
 };
 
 template<typename T>
@@ -25,12 +25,12 @@ class TPQueue {
         }
     }
     void push(const T& value) {
-        Node* temp = new Node<T>( value, nullptr );
+        Node<T>* temp = new Node<T>( value, nullptr );
         if (!head || value.prior > head->data.prior) {
             temp->next = head;
             head = temp;
         } else {
-            Node* curr = head;
+            Node<T>* curr = head;
             for (;curr->next && value.prior <= curr->next->data.prior;) {
                 curr = curr->next;
             }
@@ -43,7 +43,7 @@ class TPQueue {
             throw std::underflow_error("Queue empty");
         }
         T res = head->data;
-        Node* temp = head;
+        Node<T>* temp = head;
         head = head->next;
         delete temp;
         return res;
