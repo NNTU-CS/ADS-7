@@ -31,7 +31,7 @@ class TPQueue {
             head = temp;
         } else {
             Node<T>* curr = head;
-            for (;curr->next && value.prior <= curr->next->data.prior;) {
+            for ( ; curr->next && value.prior <= curr->next->data.prior; ) {
                 curr = curr->next;
             }
             temp->next = curr->next;
