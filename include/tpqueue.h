@@ -12,9 +12,8 @@ class TPQueue {
 
     Node* head;
 
-public: 
     TPQueue() : head(nullptr) {}
-
+      public:
     void push(const T& item) {
         Node* newNode = new Node;
         newNode->data = item;
