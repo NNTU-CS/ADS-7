@@ -12,7 +12,7 @@ class TPQueue {
 
     Node* head;
 
-public:
+public: 
     TPQueue() : head(nullptr) {}
 
     void push(const T& item) {
