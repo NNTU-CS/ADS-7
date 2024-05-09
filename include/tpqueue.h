@@ -1,4 +1,5 @@
 // Copyright 2022 NNTU-CS
+#include <iostream>
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
@@ -13,7 +14,8 @@ class TPQueue {
     Node* head;
 
     TPQueue() : head(nullptr) {}
-      public:
+
+    public:
     void push(const T& item) {
         Node* newNode = new Node;
         newNode->data = item;
