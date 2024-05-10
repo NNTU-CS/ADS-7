@@ -11,7 +11,6 @@ struct Node {
 };
 template<typename T>
 class TPQueue {
- class TPQueue {
 public:
     TPQueue() : head(nullptr), tail(nullptr), size(0) {}
 
