@@ -3,7 +3,7 @@
 #define INCLUDE_TPQUEUE_H_
 
 template<typename T>
- class TPQueue {
+class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
  private:
   struct elementOfList {
