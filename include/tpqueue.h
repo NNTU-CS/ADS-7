@@ -11,14 +11,14 @@ struct SYM {
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     struct Node {
         T data;
         Node* next;
     };
     Node* head;
     Node* create(const T&);
-public:
+ public:
     TPQueue();
     ~TPQueue();
     void push(const T&);
