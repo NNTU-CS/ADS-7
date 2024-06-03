@@ -5,7 +5,7 @@
 #include <stdexcept>
 template<typename T>
 class TPQueue {
-  private:
+ private:
     struct Node {
         T Date;
         Node* Next;
