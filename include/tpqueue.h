@@ -1,60 +1,55 @@
-template<typename T>
+#ifndef INCLUDE_TPQUEUE_H_
+#define INCLUDE_TPQUEUE_H_
+template <typename T>
 class TPQueue {
-  // реализация шаблона очереди с приоритетом на связанном списке
  private:
-  struct elementOfList {
-    T element;
-    elementOfList* nextPointer = nullptr;
+  struct Elem {
+    Elem* next = nullptr;
+    Elem* prev = nullptr;
+    T data;
   };
-  elementOfList* head;
-  void insertElementAfter(elementOfList* elemOfList, T elem) {
-    elementOfList* insertingEl = new elementOfList;
-    insertingEl->element = elem;
-    insertingEl->nextPointer = elemOfList->nextPointer;
-    elemOfList->nextPointer = insertingEl;
-  }
-  void insertHead(T elem) {
-  elementOfList* insertingEl = new elementOfList;
-  insertingEl->element = elem;
-  insertingEl->nextPointer = head;
-  head = insertingEl;
-  }
-  void removeHead() {
-  head = head->nextPointer;
-  }
-
+  Elem* first = nullptr;
+  Elem* last = nullptr;
  public:
-  TPQueue() { }
-  void push(T element) {
-    if (head == nullptr) {
-      insertHead(element);
+  void push(T new_elem) {
+    Elem* elem = new Elem;
+    elem->data = new_elem;
+    if (first == nullptr) {
+      first = elem;
+      last = elem;
+      return;
+    }
+    Elem* before_elem = last;
+    Elem* after_elem = nullptr;
+    while ((before_elem != nullptr) &&
+           (before_elem->data.prior < elem->data.prior)) {
+      after_elem = before_elem;
+      before_elem = before_elem->prev;
+    }
+    elem->prev = before_elem;
+    elem->next = after_elem;
+    if (after_elem) {
+      after_elem->prev = elem;
     } else {
-      elementOfList* currentEl;
-      currentEl = head;
-      if (currentEl->element.prior < element.prior) {
-      insertHead(element);
-      } else {
-        if (currentEl->nextPointer == nullptr) {
-          insertElementAfter(currentEl, element);
-          return;
-        }
-      while (currentEl->nextPointer != nullptr) {
-        if (currentEl->nextPointer->element.prior < element.prior) {
-          insertElementAfter(currentEl, element);
-          break;
-        }
-          currentEl = currentEl->nextPointer;
-        }
-      }
+      last = elem;
+    }
+    if (before_elem) {
+      before_elem->next = elem;
+    } else {
+      first = elem;
     }
   }
   T pop() {
-    T res = head->element;
-    removeHead();
+    T res = first->data;
+    Elem* after_1 = first->next;
+    if (after_1) {
+      after_1->prev = nullptr;
+    }
+    delete first;
+    first = after_1;
     return res;
   }
 };
-
 struct SYM {
   char ch;
   int prior;
