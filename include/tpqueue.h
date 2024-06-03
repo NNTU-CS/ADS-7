@@ -1,6 +1,5 @@
 #ifndef INCLUDE_TPQUEUE_H_
-#define INCLUDE_TPQUEUE_H_
-
+#define INCLUDE_TPQUEUE_H_ч 
 template <typename T>
 class TPQueue {
  private:
@@ -9,17 +8,21 @@ class TPQueue {
     Elem* prev = nullptr;
     T data;
   };
+
   Elem* first = nullptr;
   Elem* last = nullptr;
+
  public:
   void push(T new_elem) {
     Elem* elem = new Elem;
     elem->data = new_elem;
+   
     if (first == nullptr) {
       first = elem;
       last = elem;
       return;
     }
+   
     Elem* before_elem = last;
     Elem* after_elem = nullptr;
     while ((before_elem != nullptr) &&
@@ -29,6 +32,7 @@ class TPQueue {
     }
     elem->prev = before_elem;
     elem->next = after_elem;
+   
     if (after_elem) {
       after_elem->prev = elem;
     } else {
@@ -40,6 +44,7 @@ class TPQueue {
       first = elem;
     }
   }
+
   T pop() {
     T res = first->data;
     Elem* after_1 = first->next;
@@ -48,11 +53,14 @@ class TPQueue {
     }
     delete first;
     first = after_1;
+   
     return res;
   }
 };
+
 struct SYM {
   char ch;
   int prior;
 };
+
 #endif  // INCLUDE_TPQUEUE_H_
