@@ -2,54 +2,62 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 #include <stdexcept>
-template<typename T>
-class Node {
-  public:
-    T data;
-    Node* next;
-    Node(T data, Node<T>* next) : data{data}, next{next} {};
-};
-template<typename T>
-class TPQueue {
-  // реализация шаблона очереди с приоритетом на связанном списке
-  private:
-    Node<T>* head;
-  public:
-    TPQueue() : head(nullptr) {}
-    ~TPQueue() {
-      for ( ; head; ) {
-        pop();
-      }
-    }
-    void push(const T& value) {
-      Node<T>* temp = new Node<T>(value, nullptr);
-      if (!head || value.prior > head->data.prior) {
-        temp->next = head;
-        head = temp;
+ private:
+  struct elementOfList {
+    T element;
+    elementOfList* nextPointer = nullptr;
+  };
+  elementOfList* head;
+  void insertElementAfter(elementOfList* elemOfList, T elem) {
+    elementOfList* insertingEl = new elementOfList;
+    insertingEl->element = elem;
+    insertingEl->nextPointer = elemOfList->nextPointer;
+    elemOfList->nextPointer = insertingEl;
+  }
+  void insertHead(T elem) {
+  elementOfList* insertingEl = new elementOfList;
+  insertingEl->element = elem;
+  insertingEl->nextPointer = head;
+  head = insertingEl;
+  }
+  void removeHead() {
+  head = head->nextPointer;
+  }
+
+ public:
+  TPQueue() { }
+  void push(T element) {
+    if (head == nullptr) {
+      insertHead(element);
+    } else {
+      elementOfList* currentEl;
+      currentEl = head;
+      if (currentEl->element.prior < element.prior) {
+      insertHead(element);
       } else {
-        Node<T>* curr = head;
-        for ( ; curr->next && value.prior <= curr->next->data.prior; ) {
-          curr = curr->next;
+        if (currentEl->nextPointer == nullptr) {
+          insertElementAfter(currentEl, element);
+          return;
         }
-        temp->next = curr->next;
-        curr->next = temp;
+      while (currentEl->nextPointer != nullptr) {
+        if (currentEl->nextPointer->element.prior < element.prior) {
+          insertElementAfter(currentEl, element);
+          break;
+        }
+          currentEl = currentEl->nextPointer;
+        }
       }
     }
-    T pop() {
-      if (!head) {
-        throw std::underflow_error("Queue empty");
-      }
-      T res = head->data;
-      Node<T>* temp = head;
-      head = head->next;
-      delete temp;
-      return res;
-    }
+  }
+  T pop() {
+    T res = head->element;
+    removeHead();
+    return res;
+  }
 };
 
 struct SYM {
   char ch;
   int prior;
 };
-
 #endif  // INCLUDE_TPQUEUE_H_
