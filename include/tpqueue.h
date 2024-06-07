@@ -7,18 +7,20 @@ struct SYM {
     char ch;
     int prior;
 };
+
 template<typename T>
 struct Node {
     T data;
     Node* next;
     Node(const T& d, Node* n) : data(d), next(n) {}
 };
+
 template<typename T>
 class TPQueue {
-private:
+ private:
     Node<T>* head;
 
-public:
+ public:
     TPQueue() : head(nullptr) {}
 
     ~TPQueue() {
@@ -28,17 +30,20 @@ public:
             delete temp;
         }
     }
+
     void push(const T& data) {
         if (head == nullptr || head->data.prior < data.prior) {
             head = new Node<T>(data, head);
         } else {
             Node<T>* current = head;
-            while (current->next != nullptr && current->next->data.prior >= data.prior) {
+            while (current->next != nullptr && 
+                   current->next->data.prior >= data.prior) {
                 current = current->next;
             }
             current->next = new Node<T>(data, current->next);
         }
     }
+
     T pop() {
         if (head == nullptr) {
             throw std::runtime_error("Очередь пуста");
