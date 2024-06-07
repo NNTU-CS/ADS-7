@@ -36,7 +36,7 @@ class TPQueue {
             head = new Node<T>(data, head);
         } else {
             Node<T>* current = head;
-            while (current->next != nullptr && 
+            while (current->next != nullptr &&
                    current->next->data.prior >= data.prior) {
                 current = current->next;
             }
