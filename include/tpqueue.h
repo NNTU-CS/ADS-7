@@ -11,13 +11,14 @@ template<typename T>
 struct Node {
     T data;
     Node* next;
-    Node(const T& item) : data(item), next(nullptr) {}
+    //Node(const T& item) : data(item), next(nullptr) {}
 };
 
 template<typename T>
 class TPQueue {
     Node<T>* head;
-public:
+
+ public:
     TPQueue() : head(nullptr) {}
     void push(const T& item) {
         Node<T>* newNode = new Node<T>(item);
@@ -45,3 +46,5 @@ public:
         return item;
     }
 };
+
+#endif  // INCLUDE_TPQUEUE_H_
