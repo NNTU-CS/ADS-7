@@ -20,12 +20,12 @@ class TPQueue {
  public:
     TPQueue() : head(nullptr) {}
     void push(const T& item) {
-        Node<T>* newNode = new Node<T>(item, nullptr);
+        Node* newNode = new Node<T>(item, nullptr);
         if (!head || item.prior > head->data.prior) {
             newNode->next = head;
             head = newNode;
         } else {
-            Node<T>* current = head;
+            Node* current = head;
             while (current->next && item.prior <= current->next->data.prior) {
                 current = current->next;
             }
@@ -38,7 +38,7 @@ class TPQueue {
             throw std::out_of_range("Queue is empty");
         }
         T item = head->data;
-        Node<T>* temp = head;
+        Node* temp = head;
         head = head->next;
         delete temp;
         return item;
