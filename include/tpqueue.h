@@ -11,10 +11,13 @@ struct SYM {
 
 template<typename T>
 class TPQueue {
+
+ private:
     struct Node {
-        T data;
-        Node* next;
+        T Date;
+        Node* Next;
     };
+
     Node* head;
 
  public:
