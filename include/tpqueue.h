@@ -9,12 +9,12 @@ struct SYM {
 
 template<typename T>
 class TPQueue {
-    Node<T>* head;
     struct Node {
         T data;
         Node* next;
         //Node(const T& item) : data(item), next(nullptr) {}
     };
+    Node<T>* head;
 
  public:
     TPQueue() : head(nullptr) {}
