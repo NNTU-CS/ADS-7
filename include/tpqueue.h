@@ -14,7 +14,7 @@ class TPQueue {
 
  private:
     struct Node {
-        T date;
+        T data;
         Node* next;
     };
 
