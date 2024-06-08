@@ -2,19 +2,31 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+struct SYM {
+    char ch;
+    int prior;
+};
+
+template<typename T>
+struct Node {
+    T data;
+    Node* next;
+    Node(const T& item) : data(item), next(nullptr) {}
+};
+
 template<typename T>
 class TPQueue {
     Node<T>* head;
 public:
     TPQueue() : head(nullptr) {}
-    void push(const T& item, int priority) {
-        Node<T>* newNode = new Node<T>(item, priority);
-        if (!head || priority > head->priority) {
+    void push(const T& item) {
+        Node<T>* newNode = new Node<T>(item);
+        if (!head || item.prior > head->data.prior) {
             newNode->next = head;
             head = newNode;
         } else {
             Node<T>* current = head;
-            while (current->next && priority <= current->next->priority) {
+            while (current->next && item.prior <= current->next->data.prior) {
                 current = current->next;
             }
             newNode->next = current->next;
@@ -23,6 +35,7 @@ public:
     }
     T pop() {
         if (!head) {
+            std::cout << “Queue is empty!” << std::endl;
             exit(1);
         }
         T item = head->data;
@@ -32,10 +45,3 @@ public:
         return item;
     }
 };
-
-struct SYM {
-  char ch;
-  int prior;
-};
-
-#endif  // INCLUDE_TPQUEUE_H_
