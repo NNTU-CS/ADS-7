@@ -20,7 +20,7 @@ class TPQueue {
  public:
     TPQueue() : head(nullptr) {}
     void push(const T& item) {
-        Node* newNode = new Node<T>(item, nullptr);
+        Node* newNode = new Node(item, nullptr);
         if (!head || item.prior > head->data.prior) {
             newNode->next = head;
             head = newNode;
