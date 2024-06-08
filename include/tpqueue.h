@@ -11,7 +11,6 @@ struct SYM {
 
 template<typename T>
 class TPQueue {
-
  private:
     struct Node {
         T data;
