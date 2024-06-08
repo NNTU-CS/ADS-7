@@ -8,15 +8,13 @@ struct SYM {
 };
 
 template<typename T>
-struct Node {
-    T data;
-    Node* next;
-    //Node(const T& item) : data(item), next(nullptr) {}
-};
-
-template<typename T>
 class TPQueue {
     Node<T>* head;
+    struct Node {
+        T data;
+        Node* next;
+        //Node(const T& item) : data(item), next(nullptr) {}
+    };
 
  public:
     TPQueue() : head(nullptr) {}
