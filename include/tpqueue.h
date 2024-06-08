@@ -19,7 +19,7 @@ class TPQueue {
  public:
     TPQueue() : head(nullptr) {}
     void push(const T& item) {
-        Node<T>* newNode = new Node<T>(item);
+        Node<T>* newNode = new Node<T>(item,nullptr);
         if (!head || item.prior > head->data.prior) {
             newNode->next = head;
             head = newNode;
@@ -34,8 +34,7 @@ class TPQueue {
     }
     T pop() {
         if (!head) {
-            std::cout << “Queue is empty!” << std::endl;
-            exit(1);
+            throw std::cout << “Queue is empty!” << std::endl;
         }
         T item = head->data;
         Node<T>* temp = head;
