@@ -84,7 +84,7 @@ T TPQueue<T>::pop() {
         }
         return data;
     } else {
-        return { '\0',-1 };
+        return { '\0', -1 };
     }
 }
 
