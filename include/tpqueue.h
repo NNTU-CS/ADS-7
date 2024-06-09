@@ -83,6 +83,8 @@ T TPQueue<T>::pop() {
             tail = nullptr;
         }
         return data;
+    } else {
+        return { '\0',-1 };
     }
 }
 
